@@ -1,3 +1,0 @@
-C:/Users/Nadika Poudel/OneDrive/Desktop/SocialMediaApp/build/CMakeFiles/myapp.dir
-C:/Users/Nadika Poudel/OneDrive/Desktop/SocialMediaApp/build/CMakeFiles/edit_cache.dir
-C:/Users/Nadika Poudel/OneDrive/Desktop/SocialMediaApp/build/CMakeFiles/rebuild_cache.dir
