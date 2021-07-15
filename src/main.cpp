@@ -4,7 +4,7 @@
 #include <string>
 #include "message.cpp"
 #include "login.cpp"
-
+#include "privacy.cpp"
 
 extern char currentLoggedInUsername[20];
 extern bool isLoggedIn, isUser;
@@ -43,7 +43,7 @@ menu:
         std::cout<<std::endl;
         std::cout<<std::endl;
         std::cout<<LoggedInUser;
-        goto menu;
+        goto home;
         break;
         case 3:
         if(!isLoggedIn){
@@ -69,7 +69,30 @@ menu:
         
 
     }
-
+home:
+    std::cout<<"1. Privacy"<<std::endl;
+    std::cout<<"2. Post"<<std::endl;
+    std::cout<<"3. Message"<<std::endl;
+    std::cout<<"4. User profile"<<std::endl;
+    std::cout<<"5. Exit"<<std::endl;
+    std::cout<<"Please select the required option..";
+    std::cin>>i;
+    switch(i)
+    {
+        case 1:
+        std::system("CLS");
+        add_remove_friend();
+        break;
+        case 2:
+        break;
+        case 3:
+        break;
+        break;
+        case 4:
+        break;
+        case 5:
+        exit(0);
+    }
     };
     
     return 0;

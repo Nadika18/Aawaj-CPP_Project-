@@ -18,6 +18,7 @@ protected:
     int age;
     char username[20];
     char password[20];
+    friend bool check_user_exists(char username01[20]);
 };
 
 class Admin : public Person

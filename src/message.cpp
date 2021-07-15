@@ -42,7 +42,7 @@ class message{
         string extension= ".bin";
         string sdr(sender), rec(receiver);
         receiverFile.open((path+rec+"/"+sdr+extension).c_str(), ios::out);
-        receiverFile<<<<endl;
+        receiverFile<<endl;
         cout.setf(ios::right);
         cout<<"received by"<<receiver<<endl;
         cout<<messageBody<<endl;
