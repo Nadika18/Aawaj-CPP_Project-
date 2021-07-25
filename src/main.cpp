@@ -20,6 +20,7 @@ menu:
     std::cout<<"2. Login"<<std::endl;
     std::cout<<"3. Message"<<std::endl;
     std::cout<<"4. Exit"<<std::endl;
+     std::cout<<"5. Inbox"<<std::endl;
     std::cout<<"Press the required option 1, 2, 3...."<<std::endl;
     int i;
     std::cin>>i;
@@ -59,15 +60,26 @@ menu:
             std::cin.ignore();
             std::cin.getline(msgbody,150);
             message msg(receiver,msgbody);
-            msg.display();
+            msg.sendMessage();
             
-            
+        break;    
         }
+        case 5:
+        if(!isLoggedIn){
+            std::cout<<"Login first"<<std::endl;
+            goto menu;
+        }else{
+            std::system("CLS");
+            char sender[20]; 
+            viewsenders();
+            cin>>sender;
+            message m(sender);
+            std::system("CLS");
+            viewmessage(m);
 
+        }
         case 4:
         exit(0);
-        
-
     }
 
     };
