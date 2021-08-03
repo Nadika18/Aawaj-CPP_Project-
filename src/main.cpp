@@ -44,7 +44,7 @@ menu:
         std::cout<<std::endl;
         std::cout<<std::endl;
         std::cout<<LoggedInUser;
-        goto menu;
+        goto home;
         break;
         case 3:
         if(!isLoggedIn)
