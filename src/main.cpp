@@ -4,7 +4,8 @@
 #include <string>
 #include "message.cpp"
 #include "login.cpp"
-
+#include "add_user.cpp"
+#include "userprofile.cpp"
 
 extern char currentLoggedInUsername[20];
 extern bool isLoggedIn, isUser;
@@ -46,10 +47,13 @@ menu:
         goto menu;
         break;
         case 3:
-        if(!isLoggedIn){
+        if(!isLoggedIn)
+        {
             std::cout<<"Login first"<<std::endl;
             goto menu;
-        }else{
+        }
+        else
+        {
             std::system("CLS");
             std::cout<<"Enter the username of receiver"<<std::endl;
             char receiver[20];
@@ -59,17 +63,35 @@ menu:
             std::cin.ignore();
             std::cin.getline(msgbody,150);
             message msg(receiver,msgbody);
-            msg.display();
-            
-            
+            msg.display(); 
         }
-
         case 4:
         exit(0);
-        
-
     }
-
+home:
+    std::cout<<"1. Privacy"<<std::endl;
+    std::cout<<"2. Post"<<std::endl;
+    std::cout<<"3. User Profile"<<std::endl;
+    std::cout<<"4. Exit"<<std::endl;
+    std::cout<<"Select the required optiton";
+    std::cin>>i;
+    switch(i)
+    {
+        case 1:
+        std::system("CLS");
+        adduser();
+        break;
+        case 2:
+        std::system("CLS");
+        //message_user();
+        break;
+        case 3:
+        std::system("CLS");
+        display_profile();
+        break;
+        case 4:
+        exit(0);
+    }    
     };
     
     return 0;

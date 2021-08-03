@@ -29,6 +29,8 @@ public:
 
 class User : public Person
 {
+protected: 
+
 public:
     friend std::ifstream &operator>>(std::ifstream &, User &);
     friend std::ofstream &operator<<(std::ofstream &, User &);
@@ -43,6 +45,7 @@ public:
     }
     friend bool Register();
     friend bool login(char [], char [], usertype);
+    friend void add_friend();
 };
 
 User LoggedInUser;
