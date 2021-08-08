@@ -10,7 +10,7 @@
 extern char currentLoggedInUsername[20];
 extern bool isLoggedIn, isUser;
 extern User LoggedInUser;
-
+extern char current_user_username[20];
 
 int main()
 {
@@ -26,45 +26,45 @@ menu:
     std::cin>>i;
     switch(i){
         case 1:
-        std::system("CLS");
-        Register();
-        goto menu;
-        break;
-        case 2:
-        std::system("CLS");
-        char usr[20];
-        char pwd[20];
-        std::cout<<"enter username"<<std::endl;
-        std::cin>>usr;
-        std::cout<<"enter password"<<std::endl;
-        std::cin>>pwd;
-        login(usr,pwd);
-        if(isLoggedIn){
-        std::cout<<"Successfully Logged In!!!!!!!!!"<<std::endl;
-        std::cout<<std::endl;
-        std::cout<<std::endl;
-        std::cout<<LoggedInUser;
-        goto home;
-        break;
-        case 3:
-        if(!isLoggedIn)
-        {
-            std::cout<<"Login first"<<std::endl;
-            goto menu;
-        }
-        else
-        {
             std::system("CLS");
-            std::cout<<"Enter the username of receiver"<<std::endl;
-            char receiver[20];
-            std::cin>>receiver;
-            char msgbody[250];
-            std::cout<<"Enter the msg body"<<std::endl;
-            std::cin.ignore();
-            std::cin.getline(msgbody,150);
-            message msg(receiver,msgbody);
-            msg.display(); 
-        }
+            Register();
+            goto menu;
+            break;
+        case 2:
+            std::system("CLS");
+            char usr[20];
+            char pwd[20];
+            std::cout<<"enter username"<<std::endl;
+            std::cin>>usr;
+            std::cout<<"enter password"<<std::endl;
+            std::cin>>pwd;
+            login(usr,pwd);
+            if(isLoggedIn){
+                std::cout<<"Successfully Logged In!!!!!!!!!"<<std::endl;
+                std::cout<<std::endl;
+                std::cout<<std::endl;
+                std::cout<<LoggedInUser;
+                goto home;
+                break;
+        case 3:
+            if(!isLoggedIn)
+            {
+                std::cout<<"Login first"<<std::endl;
+                goto menu;
+            }
+            else
+            {
+                std::system("CLS");
+                std::cout<<"Enter the username of receiver"<<std::endl;
+                char receiver[20];
+                std::cin>>receiver;
+                char msgbody[250];
+                std::cout<<"Enter the msg body"<<std::endl;
+                std::cin.ignore();
+                std::cin.getline(msgbody,150);
+                message msg(receiver,msgbody);
+                msg.display(); 
+            }
         case 4:
         exit(0);
     }
@@ -78,21 +78,20 @@ home:
     switch(i)
     {
         case 1:
-        std::system("CLS");
-        adduser();
-        break;
+            std::system("CLS");
+            adduser();
+            break;
         case 2:
-        std::system("CLS");
+            std::system("CLS");
         //message_user();
-        break;
+            break;
         case 3:
-        std::system("CLS");
-        display_profile();
-        break;
+            std::system("CLS");
+            display_profile();
+            break;
         case 4:
-        exit(0);
-    }    
+            exit(0);
+    }   
     };
-    
     return 0;
 }
