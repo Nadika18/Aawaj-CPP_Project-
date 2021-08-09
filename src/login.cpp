@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include <process.h>
 #include <dir.h>
 #include <cstring>
@@ -171,6 +172,10 @@ check:
         userfile.write((char *)&p, sizeof(User));
         std::string path="../data/messages/";
         mkdir((path+p.username).c_str());
+        std::string path1="../data/follow/";
+        std::fstream followfilee;
+        followfilee.open((path1+p.username+".bin").c_str(), std::ios::app);
+        followfilee.close();
 
         return true;
     }
