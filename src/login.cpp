@@ -2,7 +2,7 @@
 #include <iostream>
 #include <process.h>
 #include <dir.h>
-
+#include <cstring>
 enum usertype
 {
     admin,
@@ -29,6 +29,13 @@ public:
 
 class User : public Person
 {
+protected: 
+    int n_followers=0;
+    int n_following=0;
+    int n_posts=0;
+    std::string *name_of_followers;
+    std::string *name_of_following;
+    std::string *users_posts;
 public:
     friend std::ifstream &operator>>(std::ifstream &, User &);
     friend std::ofstream &operator<<(std::ofstream &, User &);
@@ -43,7 +50,14 @@ public:
     }
     friend bool Register();
     friend bool login(char [], char [], usertype);
+    friend void add_friend();
+    friend void block_friend();
+    friend void display_profile();
+    friend void view_followers();
+    friend void view_following();
+    friend void view_posts();
 };
+
 
 User LoggedInUser;
 
