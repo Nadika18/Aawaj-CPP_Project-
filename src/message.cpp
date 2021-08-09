@@ -7,6 +7,7 @@
 #include <windows.h>
 #include <cstdio> // include for std::rename
 #include <vector>
+#include <algorithm>
 #include "login.cpp"
 
 using namespace std;
@@ -18,6 +19,7 @@ class message{
     time_t msgtime;
     
     public:
+    message(){}
     message(char rec[],char msgbody[]){
         strcpy(sender, currentLoggedInUsername);
         strcpy(receiver, rec);
@@ -130,18 +132,28 @@ void viewmessage(message &p){
         v.push_back(m);
     }
     receiverFile.close();
-    
-};
-
-
-ostream& operator<<(ostream &out,message &p){
-    cout<<p.sender<<": ";
-    changeColor(14);
-    cout<<p.messageBody<<endl;
-    changeColor(15);
-    cout<<asctime(localtime(&p.msgtime));
-    return out;
+    cout<<v.size()<<endl;
+   for(auto it = v.begin(); it != v.end(); it++) {
+        if(!strcmp(it->sender, currentLoggedInUsername)){
+            cout.width(100);
+        cout.setf(ios::right);
+        changeColor(1);
+        cout<<it->messageBody<<endl;
+        changeColor(7);
+        cout.width(100);
+        cout.setf(ios::right);
+        cout<<asctime(localtime(&it->msgtime))<<endl;
+        }else{
+            cout<<it->sender<<": ";
+            changeColor(14);
+            cout<<it->messageBody<<endl;
+            changeColor(15);
+            cout<<asctime(localtime(&it->msgtime));
+        }
+        
+   }   
 }
+
 void changeColor(int desiredColor){ 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), desiredColor); 
 } 
