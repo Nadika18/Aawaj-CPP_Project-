@@ -66,6 +66,10 @@ class message{
         databasefile<<sender<<endl;
         databasefile.close();
     }
+    bool operator < (const message& str) const
+    {
+        return (msgtime < str.msgtime);
+    }
     friend void viewmessage(message &);
     
     friend ostream& operator<<(ostream &out,message &p);
@@ -132,10 +136,10 @@ void viewmessage(message &p){
         v.push_back(m);
     }
     receiverFile.close();
-    cout<<v.size()<<endl;
+    std::sort(v.begin(), v.end());
    for(auto it = v.begin(); it != v.end(); it++) {
         if(!strcmp(it->sender, currentLoggedInUsername)){
-            cout.width(100);
+        cout.width(100);
         cout.setf(ios::right);
         changeColor(1);
         cout<<it->messageBody<<endl;
