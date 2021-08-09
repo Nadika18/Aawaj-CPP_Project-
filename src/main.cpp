@@ -51,7 +51,7 @@ menu:
     std::cout<<"2. Post"<<std::endl;
     std::cout<<"3. Message"<<std::endl;
     std::cout<<"4. User Profile"<<std::endl;
-    std::cout<<"5. Exit"<<std::endl;
+    std::cout<<"5. Logout"<<std::endl;
     std::cout<<"Select the required optiton";
     std::cin>>i;
     switch(i)
@@ -65,9 +65,11 @@ menu:
         //message_user();
             break;
         case 3:
+        message:
         {
         std::cout<<"1. Send Message"<<endl;
         std::cout<<"2. View Inbox"<<endl;
+        std::cout<<"3. Exit"<<endl;
         int z;
         cin>>z;
         switch(z){
@@ -83,6 +85,7 @@ menu:
             std::cin.getline(msgbody,150);
             message msg(receiver,msgbody);
             msg.sendMessage();
+            goto message;
             }
             break; 
             case 2:
@@ -94,9 +97,13 @@ menu:
             message m(sender);
             std::system("CLS");
             viewmessage(m);
+            goto message;
             }
             break;
+            case 3:
+            goto home;
             }
+
         }
         break;
         case 4:
@@ -104,7 +111,7 @@ menu:
             display_profile();
             break;
         case 5:
-            exit(0);
+            goto menu;
     } 
     return 0;  
 };
