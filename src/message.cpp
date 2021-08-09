@@ -8,6 +8,8 @@
 #include <cstdio> // include for std::rename
 #include <vector>
 #include <algorithm>
+#include <iterator>
+#include <set>
 #include "login.cpp"
 
 using namespace std;
@@ -62,9 +64,8 @@ class message{
         receiverFile.close();
         fstream databasefile;
         databasefile.open((path+rec+"/database.bin").c_str(),ios::app);
-        databasefile.seekp(0,ios::beg);
         databasefile<<sender<<endl;
-        databasefile.close();
+                
     }
     bool operator < (const message& str) const
     {
@@ -75,27 +76,7 @@ class message{
     friend ostream& operator<<(ostream &out,message &p);
 
 };
-void removeID() {
-    std::string ID;
-    cin >> ID; //id of the line we want to delete
-    ifstream read("infos.txt");
-    ofstream write("tmp.txt"); 
-    if (read.is_open()) {
-       std::string line;
-       while (getline(read, line)) {
-          if (line.find(ID) != std::string::npos)
-             write << line;
-       }
-    } else {
-       std::cerr << "Error: coudn't open file\n";
-       /* additional handle */
-    }
 
-    read.close();
-    write.close();
-    std::remove("infos.txt");
-    std::rename("tmp.txt", "infos.txt");
-}
 void changeColor(int);
 
 void viewsenders(){
@@ -105,9 +86,17 @@ void viewsenders(){
     fstream databasefile;
     databasefile.open((path+rec+"/database.bin").c_str(),ios::in);
     cout<<"Inbox:"<<endl;
+    set<string, greater<string> >s1;
     while(!databasefile.eof()){
     databasefile>>p;
-    cout<<p<<endl;
+    string s(p);
+    s1.insert(s);
+    }
+    // printing set s1
+    set<string, greater<string> >::iterator itr;
+    for (itr = s1.begin(); itr != s1.end(); itr++)
+    {
+        cout << *itr<<" "<<endl;
     }
     cout<<endl;
     cout<<"Whose message would you like to view ?"<<endl;
