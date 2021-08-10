@@ -8,25 +8,22 @@ using std::cin;     using std::ios;
 using std::endl;
 using std::string;
 User universal_user;
+
 void view_followers()
 {
     char name_of_follower[20];
     string path="../data/follow/";
     fstream p_view_follow;
-    p_view_follow.open((path+LoggedInUser.name+"/follow.bin").c_str(),ios::in|ios::binary);
+
+    p_view_follow.open((path+LoggedInUser.name+"/followers.bin").c_str(),ios::in|ios::binary);
     while(!p_view_follow.eof())
     {
         p_view_follow.read(name_of_follower,sizeof(name_of_follower));
         cout<<name_of_follower<<endl;
     }
-    p_view_follow.close();
-    call_home();
-    // cout<<"Your followers are: "<<endl;
-    // for (int i =0;i<=LoggedInUser.n_followers;i++)
-    // {
-    //     cout<<i+1<<". "<<LoggedInUser.name_of_followers[i]<<endl;
-    // }
-}
+    p_view_follow.close();     
+    }
+
 void view_following()
 {
     cout<<"The people you follow are: "<<endl;
@@ -65,7 +62,7 @@ void display_profile()
     std::cout<<"Do you want to view the usernames of your friends? ";
     std::cout<<"1. View my followers?"<<std::endl;
     cout<<"2. View people who I follow?"<<endl;
-    cout<<"3. Or check all your past posts?";
+    cout<<"3. Or check all your past posts?"<<endl;
     cout<<"4. Exit the program"<<endl;
     cout<<"You choice: ";
     cin>>answer;

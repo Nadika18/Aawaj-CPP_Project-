@@ -43,7 +43,7 @@ menu:
         if(isLoggedIn){
         std::cout<<"Successfully Logged In!!!!!!!!!"<<std::endl;
         }
-        goto home;
+        call_home();
         break;
         case 3:
             exit(0);
@@ -61,6 +61,7 @@ menu:
         case 1:
             std::system("CLS");
             adduser();
+            call_home();
             break;
         case 2:
             std::system("CLS");
@@ -111,6 +112,7 @@ menu:
         case 4:
             std::system("CLS");
             display_profile();
+            call_home();
             break;
         case 5:
             goto menu;

@@ -7,6 +7,7 @@
 
 void call_home()
 {
+menu:
     int i;
     std::cout<<"1. Friends"<<std::endl;
     std::cout<<"2. Post"<<std::endl;
@@ -18,7 +19,7 @@ void call_home()
     switch(i)
     {
         case 1:
-            adduser();
+            //adduser();
             break;
         case 2:
             std::system("CLS");
@@ -69,7 +70,8 @@ void call_home()
                 display_profile();
                 break;
             case 5:
-                //goto menu;
+                goto menu;
+                //call_home();
                 break;
             }
         }
