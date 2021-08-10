@@ -27,11 +27,14 @@ menu:
     std::cin>>i;
     switch(i){
         case 1:
+        {
             std::system("CLS");
             Register();
             goto menu;
             break;
+        }
         case 2:
+        {            
             std::system("CLS");
             char usr[20];
             char pwd[20];
@@ -46,6 +49,7 @@ menu:
             }
             goto home;
             break;
+        }
         case 3:
             exit(0);
     }
@@ -93,7 +97,7 @@ menu:
                     msg.sendMessage();
                     goto message;
                 }
-                break; 
+                    break; 
                 case 2:
                 {
                     std::system("CLS");
@@ -109,16 +113,16 @@ menu:
                 case 3:
                     goto home;
                     break;
-            
-                case 4:
-                    std::system("CLS");
-                    display_profile();
-                    call_home();
-                    break;
-                case 5:
-                    goto menu;
             }
         }
+        case 4:
+            std::system("CLS");
+            display_profile();
+            goto home;
+            break;
+        case 5:
+            goto menu;
+            break;
     } 
     return 0;  
 };

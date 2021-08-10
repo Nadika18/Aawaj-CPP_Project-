@@ -31,12 +31,12 @@ public:
 class User : public Person
 {
 protected: 
-    int n_followers=0;
-    int n_following=0;
-    int n_posts=0;
-    std::string *name_of_followers;
-    std::string *name_of_following;
-    std::string *users_posts;
+    // int n_followers=0;
+    // int n_following=0;
+    // int n_posts=0;
+    // std::string *name_of_followers;
+    // std::string *name_of_following;
+    // std::string *users_posts;
 public:
     friend std::ifstream &operator>>(std::ifstream &, User &);
     friend std::ofstream &operator<<(std::ofstream &, User &);
@@ -57,6 +57,7 @@ public:
     friend void view_followers();
     friend void view_following();
     friend void view_posts();
+    friend void blocked_people();
 };
 
 
@@ -178,4 +179,20 @@ check:
         return true;
     }
     return false;
+};
+
+class name_foll
+{
+    private:
+        char nnamm[20];
+    public:
+        name_foll() {};
+        name_foll(char a[20])
+        {
+            std::strcpy(nnamm,a);
+        }
+        void display()
+        {
+            std::cout<<nnamm<<std::endl;
+        }
 };

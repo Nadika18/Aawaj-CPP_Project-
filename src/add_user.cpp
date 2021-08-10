@@ -4,20 +4,20 @@
 #include <fstream>
 #include "login.cpp"
 #include <cstring>
-#include "home.cpp"
+
 using std::string; using std::cout; using std::cin; using std::fstream; using std::ios;
 using std::strcpy;
-
-string path="../data/follow/";
-
-void adduser();
+ 
+//void adduser();
 void add_friend()
 {
+
     char name_of_user[20];
+    string path= "../data/follow/";
     std::system("CLS");
     fstream main_filepointer;
     fstream p_follow;          //jasle follow garcha tyasko
-    ofstream user_following;    //to add as following for tyo manche ko
+    std::ofstream user_following;    //to add as following for tyo manche ko
     User a;
     bool userfound = false;
     char user_name000[20];
@@ -37,12 +37,13 @@ follower vanne file kholcha ani tyasma value add garcha.
         {
             if (!std::strcmp(user_name000,a.username))
             {
+                name_foll name_of_friend(user_name000);
                 strcpy(name_of_user,a.name);
                 userfound = true;
-                LoggedInUser.n_following++;
-                p_follow.write(user_name000, sizeof(user_name000));
+                //LoggedInUser.n_following++;
+                p_follow.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 user_following.open(path+name_of_user+"/followers.bin",ios::app|ios::binary);
-                user_following.write(user_name000,sizeof(user_name000));
+                user_following.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 break;
             }
         }
@@ -63,6 +64,7 @@ follower vanne file kholcha ani tyasma value add garcha.
 
 void block_friend()
 {
+    string path= "../data/follow/";
     std::system("CLS");
     fstream main_filepointer;
     fstream blocked_to_list;   //logged in user ko lagi block gareako ko list
@@ -75,8 +77,9 @@ void block_friend()
     cout<<"\n\n\nEnter the username: ";
     cin>>user_name000;
 
-    main_filepointer.open(path+LoggedInUser.name+"/blocked_to.bin", std::ios::binary | std::ios::in);
-
+    main_filepointer.open("user.bin", std::ios::binary | std::ios::in);
+    blocked_to_list.open(path+LoggedInUser.name+"/blocked_to.bin", std::ios::binary | std::ios::app);
+    
     if (main_filepointer.is_open())
     {
         while (main_filepointer.read((char*)&a, sizeof(User)))
@@ -85,10 +88,11 @@ void block_friend()
             {
                 strcpy(name_of_user,a.name);
                 userfound = true;
-                LoggedInUser.n_following++;
-                blocked_to_list.write(user_name000, sizeof(user_name000));
+                //LoggedInUser.n_following++;
+                name_foll name_of_friend(user_name000);
+                blocked_to_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 blocked_by_list.open(path+name_of_user+"/blocked_by.bin",ios::app|ios::binary);
-                blocked_by_list.write(user_name000,sizeof(user_name000));
+                blocked_by_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 break;
             }
         }
@@ -98,11 +102,11 @@ void block_friend()
     }
     if (userfound)
     {
-        std::cout<<user_name000<<" has been block successfully!!!\n";
+        std::cout<<user_name000<<" has been blocked successfully!!!\n\n";
     }
     else 
     {
-        std::cout<<"No user with username: "<<user_name000<<" exists!.";
+        std::cout<<"No user with username: "<<user_name000<<" exists!.\n\n";
     }
 }
 void adduser()
@@ -112,7 +116,7 @@ void adduser()
     cout<<"1. Add a friend.\n";
     cout<<"2. Block a friend.\n";
     cout<<"3. Exit\n";
-    cout<<"Enter the required option...";
+    cout<<"Enter the required option... ";
     cin>>answer;
     switch(answer)
     {
