@@ -176,7 +176,6 @@ check:
         std::fstream followfilee;
         followfilee.open((path1+p.username+".bin").c_str(), std::ios::app);
         followfilee.close();
-
         return true;
     }
     return false;

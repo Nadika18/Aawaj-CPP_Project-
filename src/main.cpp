@@ -6,6 +6,7 @@
 #include "login.cpp"
 #include "add_user.cpp"
 #include "userprofile.cpp"
+#include "post.cpp"
 
 extern char currentLoggedInUsername[20];
 extern bool isLoggedIn, isUser;
@@ -14,9 +15,10 @@ extern char current_user_username[20];
 
 int main()
 {
-    std::system("CLS");
+    
     //Register();
 menu:
+    std::system("CLS");
     std::cout<<"1. Register"<<std::endl;
     std::cout<<"2. Login"<<std::endl;
     std::cout<<"3. Exit"<<std::endl;
@@ -65,8 +67,43 @@ menu:
             adduser();
             break;
         case 2:
+        post:
+        {
+        std::system("CLS");
+        std::cout<<"1. Write Post"<<endl;
+        std::cout<<"2. View Posts"<<endl;
+        std::cout<<"3. Exit"<<endl;
+        int y;
+        cin>>y;
+        {
+        switch(y){
+            case 1:
+            {
             std::system("CLS");
-        //message_user();
+            char postbody[250];
+            std::cout<<"Enter the post body"<<std::endl;
+            std::cin.ignore();
+            std::cin.getline(postbody,150);
+            posts post(postbody);
+            post.sendPosts();
+            goto post;
+            break; 
+            }
+            case 2:
+            {
+            std::system("CLS");
+            viewPosts();
+            std::getchar();
+            break;
+            }
+            case 3:
+            goto home;
+            }
+
+        }
+        break;
+        }
+
             break;
         case 3:
         message:

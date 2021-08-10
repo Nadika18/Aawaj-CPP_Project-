@@ -12,31 +12,33 @@
 #include "login.cpp"
 
 using namespace std;
-class message{
+class posts{
     protected:
-    char sender[20];
-    char receiver[20];
-    char messageBody[250];
-    time_t msgtime;
+    char postId;
+    char author[20];
+    char commenter[20];
+    char postBody[250];
+    time_t posttime;
     
     public:
-    message(){}
-    message(char rec[],char msgbody[]){
-        strcpy(sender, currentLoggedInUsername);
-        strcpy(receiver, rec);
-        strcpy(messageBody,msgbody);
-        msgtime= getCurrentTime();
+    posts(){}
+    posts(char rec[],char msgbody[]){
+        strcpy(author, currentLoggedInUsername);
+        strcpy(commenter, rec);
+        strcpy(postsBody,msgbody);
+        posttime= getCurrentTime();
         
     }
-    message(char sen[]){
-        strcpy(sender, sen);
-        strcpy(receiver, currentLoggedInUsername);
-        msgtime= getCurrentTime();
+    posts(char sen[]){
+        strcpy(author, sen);
+        strcpy(commenter, currentLoggedInUsername);
+        posttime= getCurrentTime();
         
     }
-    message(char rec[], int i){
-       strcpy(sender, currentLoggedInUsername); 
-       strcpy(receiver, rec); 
+    posts(char postbody[]){
+       strcpy(author, currentLoggedInUsername); 
+       strcpy(postBody,postbody);
+       posttime= getCurrentTime();
       
     }
     time_t getCurrentTime(){
@@ -45,38 +47,42 @@ class message{
         time (&t); //passing argument to time()
         return t;
     }
-    char *showMsgTime(){
+    char *showposttime(){
     time_t t; // t passed as argument in function time()
     struct tm * tt; // decalring variable for localtime()
     time (&t); //passing argument to time()
     tt = localtime(&t);
     return asctime(tt);
     };
-    void sendMessage(){
+    void sendposts(){
         
-        string path="../data/messages/";
+        string path="../data/posts/";
         string extension= ".bin";
-        string sdr(sender), rec(receiver);
-        fstream receiverFile;
-        receiverFile.open((path+rec+"/"+sdr+extension).c_str(), ios::app);
-        receiverFile.write((char *)this, sizeof(message));
-        receiverFile.close();
+        string aut(author), id(postId);
+        fstream authorFile;
+        authorFile.open((path+aut+"/"+id+extension).c_str(), ios::app);
+        authorFile.write((char *)this, sizeof(posts));
+        authorFile.close();
         fstream databasefile;
         databasefile.open((path+rec+"/database.bin").c_str(),ios::app);
-        databasefile<<sender<<endl;
+        databasefile<<author<<endl;
                 
     }
-    bool operator < (const message& str) const
+    bool operator < (const posts& str) const
     {
-        return (msgtime < str.msgtime);
+        return (posttime < str.posttime);
     }
-    friend void viewmessage(message &);
+    friend void viewposts(posts &);
+    
+    friend ostream& operator<<(ostream &out,posts &p);
+
 };
 
 void changeColor(int);
-void viewsenders(){
+
+void viewauthors(){
     char p[20];
-    string path="../data/messages/";
+    string path="../data/posts/";
     string rec(currentLoggedInUsername);
     fstream databasefile;
     databasefile.open((path+rec+"/database.bin").c_str(),ios::in);
@@ -94,49 +100,49 @@ void viewsenders(){
         cout << *itr<<" "<<endl;
     }
     cout<<endl;
-    cout<<"Whose message would you like to view ?"<<endl;
+    cout<<"Whose post would you like to view ?"<<endl;
     cout<<endl;
     databasefile.close();
 }
 
 
-void viewmessage(message &p){
-    vector<message> v;
-    fstream senderFile;
-    string path="../data/messages/";
+void viewpost(post &p){
+    vector<posts> v;
+    fstream authorFile;
+    string path="../data/posts/";
     string extension= ".bin";
-    string sdr(p.sender), rec(p.receiver);
-    senderFile.open((path+rec+"/"+sdr+extension).c_str(), ios::in);
-    while(senderFile.read((char *)&p, sizeof(p))){
+    string sdr(p.author), rec(p.commenter);
+    authorFile.open((path+rec+"/"+sdr+extension).c_str(), ios::in);
+    while(authorFile.read((char *)&p, sizeof(p))){
         v.push_back(p);
     }
     
-    senderFile.close();
+    authorFile.close();
     
-    fstream receiverFile;
-    message m(p.sender,0);
-    receiverFile.open((path+sdr+"/"+rec+extension).c_str(),ios::in);
-    while(receiverFile.read((char *)&m , sizeof(m))){
+    fstream commenterFile;
+    posts m(p.author,0);
+    commenterFile.open((path+sdr+"/"+rec+extension).c_str(),ios::in);
+    while(commenterFile.read((char *)&m , sizeof(m))){
         v.push_back(m);
     }
-    receiverFile.close();
+    commenterFile.close();
     std::sort(v.begin(), v.end());
    for(auto it = v.begin(); it != v.end(); it++) {
-        if(!strcmp(it->sender, currentLoggedInUsername)){
+        if(!strcmp(it->author, currentLoggedInUsername)){
         cout.width(100);
         cout.setf(ios::right);
         changeColor(1);
-        cout<<it->messageBody<<endl;
+        cout<<it->postBody<<endl;
         changeColor(7);
         cout.width(100);
         cout.setf(ios::right);
-        cout<<asctime(localtime(&it->msgtime))<<endl;
+        cout<<asctime(localtime(&it->posttime))<<endl;
         }else{
-            cout<<it->sender<<": ";
+            cout<<it->author<<": ";
             changeColor(14);
-            cout<<it->messageBody<<endl;
+            cout<<it->postBody<<endl;
             changeColor(15);
-            cout<<asctime(localtime(&it->msgtime));
+            cout<<asctime(localtime(&it->posttime));
         }
         
    }   
