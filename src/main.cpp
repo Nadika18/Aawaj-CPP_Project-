@@ -11,6 +11,8 @@ extern char currentLoggedInUsername[20];
 extern bool isLoggedIn, isUser;
 extern User LoggedInUser;
 extern char current_user_username[20];
+extern void call_home();
+extern void adduser();
 
 int main()
 {
@@ -47,9 +49,6 @@ menu:
             exit(0);
     }
     home:
-    {
-        {
-    std::system("CLS");
     std::cout<<"1. Privacy"<<std::endl;
     std::cout<<"2. Post"<<std::endl;
     std::cout<<"3. Message"<<std::endl;
@@ -57,7 +56,6 @@ menu:
     std::cout<<"5. Logout"<<std::endl;
     std::cout<<"Select the required optiton";
     std::cin>>i;
-        }
     switch(i)
     {
         case 1:
@@ -71,13 +69,11 @@ menu:
         case 3:
         message:
         {
-        std::system("CLS");
         std::cout<<"1. Send Message"<<endl;
         std::cout<<"2. View Inbox"<<endl;
         std::cout<<"3. Exit"<<endl;
         int z;
         cin>>z;
-        {
         switch(z){
             case 1:
             {
@@ -92,8 +88,8 @@ menu:
             message msg(receiver,msgbody);
             msg.sendMessage();
             goto message;
-            break; 
             }
+            break; 
             case 2:
             {
             std::system("CLS");
@@ -103,23 +99,21 @@ menu:
             message m(sender);
             std::system("CLS");
             viewmessage(m);
-            std::getchar();
-            break;
+            goto message;
             }
+            break;
             case 3:
             goto home;
             }
 
         }
         break;
-        }
         case 4:
             std::system("CLS");
             display_profile();
             break;
         case 5:
             goto menu;
-    }
     } 
     return 0;  
 };

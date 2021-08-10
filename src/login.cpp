@@ -173,9 +173,9 @@ check:
         std::string path="../data/messages/";
         mkdir((path+p.username).c_str());
         std::string path1="../data/follow/";
-        std::fstream followfilee;
-        followfilee.open((path1+p.username+".bin").c_str(), std::ios::app);
-        followfilee.close();
+        std::fstream followfolder;
+        followfolder.open((path1+p.username).c_str(), std::ios::app);
+        followfolder.close();
 
         return true;
     }
