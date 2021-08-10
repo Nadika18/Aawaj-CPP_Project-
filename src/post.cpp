@@ -46,6 +46,12 @@ class posts{
         postfile.open("../data/posts/post.bin", ios::app);
         postfile.write((char *)this, sizeof(posts));
         postfile.close();
+        string postId3;
+        postId3= to_string(this->postId);
+        string extension= ".bin";
+        fstream commentfile;
+        commentfile.open(("../data/posts/"+postId3+extension).c_str(), ios::in);
+        commentfile.close();  
     }
     bool operator < (const posts& str) const
     {
@@ -92,6 +98,7 @@ void viewPosts(){
             cout<<a.postBody<<endl;
             changeColor(15);
             cout<<asctime(localtime(&a.posttime));
+            cout<<endl;
            };
         commentfile.close();    
         char ans;
