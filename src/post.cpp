@@ -81,28 +81,23 @@ void viewPosts(){
         changeColorr(15);
         cout<<asctime(localtime(&it->posttime));
         cout<<endl;
-        char ans;
-        cout<<"View Comments: y/n ?"<<endl;
-        cin>>ans;
         string postId2;
         postId2= to_string(it->postId);
         string extension= ".bin";
-        if(ans == 'y'){
-            commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::in);
-            posts a;
-           while(commentfile.read((char *)&a, sizeof(a))){
-               cout<<a.author<<": ";
-                changeColor(14);
-                cout<<a.postBody<<endl;
-                changeColor(15);
-                cout<<asctime(localtime(&a.posttime));
+        commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::in);
+        posts a;
+        while(commentfile.read((char *)&a, sizeof(a))){
+            cout<<a.author<<": ";
+            changeColor(14);
+            cout<<a.postBody<<endl;
+            changeColor(15);
+            cout<<asctime(localtime(&a.posttime));
            };
-            commentfile.close();    
-        } 
-        char a;
+        commentfile.close();    
+        char ans;
         cout<<"Comment y/n?"<<endl;
-        cin>>a;
-        if(a == 'y'){
+        cin>>ans;
+        if(ans == 'y'){
         commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::app);
         cout<<"Write a comment"<<endl;
         char comment[150];
