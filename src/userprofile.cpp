@@ -1,16 +1,31 @@
 #pragma once
 #include <iostream>
+#include <fstream>
 #include "login.cpp"
-using std::cout;
-using std::cin;
+#include "home.cpp"
+using std::cout;    using std::fstream;
+using std::cin;     using std::ios;
 using std::endl;
+using std::string;
+User universal_user;
 void view_followers()
 {
-    cout<<"Your followers are: "<<endl;
-    for (int i =0;i<=LoggedInUser.n_followers;i++)
+    char name_of_follower[20];
+    string path="../data/follow/";
+    fstream p_view_follow;
+    p_view_follow.open((path+LoggedInUser.name+"/follow.bin").c_str(),ios::in|ios::binary);
+    while(!p_view_follow.eof())
     {
-        cout<<i+1<<". "<<LoggedInUser.name_of_followers[i]<<endl;
+        p_view_follow.read(name_of_follower,sizeof(name_of_follower));
+        cout<<name_of_follower<<endl;
     }
+    p_view_follow.close();
+    call_home();
+    // cout<<"Your followers are: "<<endl;
+    // for (int i =0;i<=LoggedInUser.n_followers;i++)
+    // {
+    //     cout<<i+1<<". "<<LoggedInUser.name_of_followers[i]<<endl;
+    // }
 }
 void view_following()
 {
@@ -62,7 +77,7 @@ void display_profile()
             break;
         case 2:
             std::system("CLS");
-            view_following();
+            view_followers();
             break;
         case 3:
             std::system("CLS");
