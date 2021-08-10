@@ -67,6 +67,7 @@ menu:
                 break;
             case 4:
                 std::system("CLS");
+                cout<<"This is called";
                 display_profile();
                 break;
             case 5:
