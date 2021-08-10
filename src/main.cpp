@@ -94,6 +94,7 @@ menu:
             std::system("CLS");
             viewPosts();
             std::getchar();
+             goto post;
             break;
             }
             case 3:
@@ -141,6 +142,7 @@ menu:
             std::system("CLS");
             viewmessage(m);
             std::getchar();
+            goto message;
             break;
             }
             case 3:

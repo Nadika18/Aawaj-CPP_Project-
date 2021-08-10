@@ -16,7 +16,6 @@ class posts{
     protected:
     static int postId;
     char author[20];
-    char commenter[20];
     char postBody[250];
     time_t posttime;
     
@@ -63,13 +62,17 @@ void viewPosts(){
     posts p;
     vector<posts> v;
     fstream postfile;
+    fstream commentfile;
     postfile.open("../data/posts/post.bin", ios::in);
     while(postfile.read((char *)&p, sizeof(posts))){
         v.push_back(p);
+        string postId1;
+        postId1= to_string(p.postId);
+        string extension= ".bin";
+        commentfile.open(("../data/posts/"+postId1+extension).c_str(), ios::app);
+        commentfile.close();
     };
-    fstream commentfile;
-    commentfile.close();
-    commentfile.open("../data/posts/comments.bin", ios::app);
+    postfile.close();
     std::sort(v.begin(), v.end());
     for(auto it = v.begin(); it != v.end(); it++) {
         cout<<it->author<<": "<<endl;
@@ -81,15 +84,34 @@ void viewPosts(){
         char ans;
         cout<<"View Comments: y/n ?"<<endl;
         cin>>ans;
+        string postId2;
+        postId2= to_string(it->postId);
+        string extension= ".bin";
         if(ans == 'y'){
-           while(commentfile.read((char *)&p, sizeof(posts))){
-               cout<<p.author<<": ";
+            commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::in);
+            posts a;
+           while(commentfile.read((char *)&a, sizeof(a))){
+               cout<<a.author<<": ";
                 changeColor(14);
-                cout<<p.postBody<<endl;
+                cout<<a.postBody<<endl;
                 changeColor(15);
-                cout<<asctime(localtime(&p.posttime));
-           };     
+                cout<<asctime(localtime(&a.posttime));
+           };
+            commentfile.close();    
+        } 
+        char a;
+        cout<<"Comment y/n?"<<endl;
+        cin>>a;
+        if(a == 'y'){
+        commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::app);
+        cout<<"Write a comment"<<endl;
+        char comment[150];
+        std::cin.ignore();
+        std::cin.getline(comment,150);
+        posts c(comment);
+        commentfile.write((char *)&c, sizeof(c));
         }
+        commentfile.close();    
     }
-    commentfile.close();
+    
     }
