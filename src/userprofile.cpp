@@ -6,26 +6,26 @@ using std::cin;
 using std::endl;
 void view_followers()
 {
-    std::cout<<"Your followers are: "<<std::endl;
+    cout<<"Your followers are: "<<endl;
     for (int i =0;i<=LoggedInUser.n_followers;i++)
     {
-        std::cout<<i+1<<". "<<LoggedInUser.name_of_followers[i]<<std::endl;
+        cout<<i+1<<". "<<LoggedInUser.name_of_followers[i]<<endl;
     }
 }
 void view_following()
 {
-    std::cout<<"The people you follow are: "<<std::endl;
+    cout<<"The people you follow are: "<<endl;
     for (int i =0;i<=LoggedInUser.n_following;i++)
     {
-        std::cout<<i+1<<". "<<LoggedInUser.name_of_following[i]<<std::endl;
+        cout<<i+1<<". "<<LoggedInUser.name_of_following[i]<<endl;
     }
 }
 void view_posts()
 {
-    std::cout<<"Your posts are: "<<std::endl;
+    cout<<"Your posts are: "<<endl;
     for (int i =0;i<=LoggedInUser.n_posts;i++)
     {
-        std::cout<<i+1<<". "<<LoggedInUser.users_posts[i]<<std::endl;
+        cout<<i+1<<". "<<LoggedInUser.users_posts[i]<<endl;
     }
 }
 void display_profile()
@@ -49,10 +49,10 @@ void display_profile()
     std::cout<<std::endl<<std::endl<<std::endl;
     std::cout<<"Do you want to view the usernames of your friends? ";
     std::cout<<"1. View my followers?"<<std::endl;
-    std::cout<<"2. View people who I follow?"<<std::endl;
-    std::cout<<"3. Or check all your past posts?";
-    std::cout<<"4. Exit the program"<<std::endl;
-    std::cout<<"You choice: ";
+    cout<<"2. View people who I follow?"<<endl;
+    cout<<"3. Or check all your past posts?";
+    cout<<"4. Exit the program"<<endl;
+    cout<<"You choice: ";
     cin>>answer;
     switch(answer)
     {

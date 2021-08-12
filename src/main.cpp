@@ -6,7 +6,8 @@
 #include "login.cpp"
 #include "add_user.cpp"
 #include "userprofile.cpp"
-// cd bui
+#include "post.cpp"
+
 extern char currentLoggedInUsername[20];
 extern bool isLoggedIn, isUser;
 extern User LoggedInUser;
@@ -14,10 +15,10 @@ extern char current_user_username[20];
 
 int main()
 {
- 
+    
     //Register();
 menu:
-   std::system("CLS");
+  std::system("CLS");
 system( "color 61" ); 
 std::cout << "\t\t" <<char(201);      for(int i=0; i<20; i++){std::cout  << char(205);}      std::cout << char(187) << std::endl;
 std::cout  <<"\t\t" << char(186) << "       AAWAJ        " << char(186) << std::endl;
@@ -31,8 +32,7 @@ std::cout  << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout  << char(19
 std::cout  << "\t\t" <<char(179) << "   3.Exit           " << char(179) << std::endl;
 
 std::cout  << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout  << char(196);}   std::cout  << char(217) << std::endl;
-  changeColor(15);
-   std::cout<<"\tPress the required option 1, 2, 3...."<<std::endl;
+    std::cout<<"Press the required option 1, 2, 3...."<<std::endl;
     int i;
     std::cin>>i;
     switch(i){
@@ -43,10 +43,9 @@ std::cout  << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout  << char(19
         break;
         case 2:
         std::system("CLS");
-        system( "color 2" );
         char usr[20];
         char pwd[20];
-        std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+       std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
         std::cout << "\t\t" <<char(179) << "  Enter your username :  " << char(179) << std::endl;
         std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
         std::cin >> usr;
@@ -54,10 +53,9 @@ std::cout  << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout  << char(19
         std::cout << "\t\t" <<char(179) << "  Enter your password :  " << char(179) << std::endl;
         std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
         std::cin >> pwd;
-  
         login(usr,pwd);
         if(isLoggedIn){
-        std::cout<<"Successfully Logged In!!!!!!!!!!"<<std::endl;
+        std::cout<<"Successfully Logged In!!!!!!!!!"<<std::endl;
         }
         goto home;
         break;
@@ -93,13 +91,54 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             adduser();
             break;
         case 2:
+        post:
+        {
+        std::system("CLS");
+                   std::cout << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout <<"\t\t" << char(179) << "   1.Write Post     " << char(179) << std::endl;
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   2.View Posts     " << char(179) << std::endl;
+std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   3.Exit           " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+       
+        int y;
+        cin>>y;
+        {
+        switch(y){
+            case 1:
+            {
             std::system("CLS");
-        //message_user();
+            char postbody[250];
+            std::cout<<"Enter the post body"<<std::endl;
+            std::cin.ignore();
+            std::cin.getline(postbody,150);
+            posts post(postbody);
+            post.sendPosts();
+            goto post;
+            break; 
+            }
+            case 2:
+            {
+            std::system("CLS");
+            viewPosts();
+            std::getchar();
+             goto post;
+            break;
+            }
+            case 3:
+            goto home;
+            }
+
+        }
+        break;
+        }
+
             break;
         case 3:
         message:
         {
-        std::system("CLS");
+         std::system("CLS");
            std::cout << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
 std::cout <<"\t\t" << char(179) << "   1.Send Message   " << char(179) << std::endl;
 std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
@@ -136,6 +175,7 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             std::system("CLS");
             viewmessage(m);
             std::getchar();
+            goto message;
             break;
             }
             case 3:

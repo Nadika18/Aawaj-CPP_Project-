@@ -72,14 +72,9 @@ void adduser()
 {
     int answer;
     std::cout<<std::setw(67)<<"PRIVACY\n";
-       std::cout << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
-std::cout <<"\t\t" << char(179) << "   1.Add a friend   " << char(179) << std::endl;
-
-std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   2.Block a friend " << char(179) << std::endl;
-std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   3.Exit           " << char(179) << std::endl;
-std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+    std::cout<<"1. Add a friend.\n";
+    std::cout<<"2. Block a friend.\n";
+    std::cout<<"3. Exit\n";
     std::cout<<"Enter the required option...";
     std::cin>>answer;
     switch(answer)
