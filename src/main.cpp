@@ -57,7 +57,7 @@ std::cout  << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout  << char(19
   
         login(usr,pwd);
         if(isLoggedIn){
-        std::cout<<"Successfully Logged In!!!!!!!!!"<<std::endl;
+        std::cout<<"Successfully Logged In!!!!!!!!!!"<<std::endl;
         }
         goto home;
         break;
