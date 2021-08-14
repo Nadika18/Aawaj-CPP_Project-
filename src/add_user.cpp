@@ -107,25 +107,4 @@ void block_friend()
         std::cout<<"No user with username: "<<user_name000<<" exists!.\n\n";
     }
 }
-void adduser()
-{
-    int answer;
-    cout<<std::setw(67)<<"PRIVACY\n";
-    cout<<"1. Add a friend.\n";
-    cout<<"2. Block a friend.\n";
-    cout<<"3. Exit\n";
-    cout<<"Enter the required option... ";
-    cin>>answer;
-    switch(answer)
-    {
-        case 1:
-            add_friend();
-            break;
-        case 2:
-            block_friend();
-            break;
-        default:
-            exit(0);
-            break;
-    }
-}
+

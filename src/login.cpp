@@ -186,7 +186,7 @@ class name_foll
             std::strcpy(nnamm,a);
         }
         void display()
-        {
+        {   
             std::cout<<nnamm<<std::endl;
         }
 };
