@@ -4,89 +4,128 @@
 #include <fstream>
 #include "login.cpp"
 #include <cstring>
+
+using std::string; using std::cout; using std::cin; using std::fstream; using std::ios;
+using std::strcpy;
+ 
+//void adduser();
 void add_friend()
 {
-    std::fstream filepointer;
-    char user_name000[20];
+
+    char name_of_user[20];
+    string path= "../data/follow/";
     std::system("CLS");
-    std::cout<<"\n\n\nEnter the username: ";
-    std::cin>>user_name000;
-    filepointer.open("user.bin", std::ios::binary | std::ios::in);
+    fstream main_filepointer;
+    fstream p_follow;          //jasle follow garcha tyasko
+    std::ofstream user_following;    //to add as following for tyo manche ko
     User a;
     bool userfound = false;
-    if (filepointer.is_open())
+    char user_name000[20];
+/*  p_follow le chahi manche le follow gare pachi tyasko following vanne folder ma add
+gayera add garna lai following.bin kholcha, vane user_following le chahi tyo follow gareko manche  ko
+follower vanne file kholcha ani tyasma value add garcha.  
+*/
+
+    main_filepointer.open("user.bin", std::ios::binary | std::ios::in);
+    p_follow.open((path+LoggedInUser.name+"/following.bin").c_str(),ios::app | ios::binary);
+
+    std::cout<<"\n\n\nEnter the username: ";
+    std::cin>>user_name000;
+    if (main_filepointer.is_open())
     {
-        while (filepointer.read((char*)&a, sizeof(User)))
+        while (main_filepointer.read((char*)&a, sizeof(User)))
         {
             if (!std::strcmp(user_name000,a.username))
             {
+                name_foll name_of_friend(user_name000);
+                strcpy(name_of_user,a.name);
                 userfound = true;
-                LoggedInUser.n_following++;
-                LoggedInUser.name_of_following[LoggedInUser.n_following]=user_name000;
+                p_follow.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
+                user_following.open(path+name_of_user+"/followers.bin",ios::app|ios::binary);
+                user_following.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 break;
             }
         }
-        filepointer.close();
+        user_following.close();
+        p_follow.close();
+        main_filepointer.close();
     }
     if (userfound)
     {
-        std::cout<<user_name000<<" has been added successfully!!!\n";
+        cout<<user_name000<<" has been added successfully!!!\n";
     }
     else 
     {
-        std::cout<<"No user with username: "<<user_name000<<" exists!.";
+        cout<<"No user with username: "<<user_name000<<" exists!.";
     }
+    p_follow.close();
 }
+
 void block_friend()
 {
-    std::fstream filepointer;
-    char user_name000[20];
+    string path= "../data/follow/";
     std::system("CLS");
-    std::cout<<"\n\n\nEnter the username: ";
-    std::cin>>user_name000;
-    filepointer.open("user.bin", std::ios::binary | std::ios::in);
+    fstream main_filepointer;
+    fstream blocked_to_list;   //logged in user ko lagi block gareako ko list
+    fstream blocked_by_list;     // for file of block gareko manche
+    char user_name000[20];
     User a;
     bool userfound = false;
-    if (filepointer.is_open())
+    char name_of_user[20];
+
+    cout<<"\n\n\nEnter the username: ";
+    cin>>user_name000;
+
+    main_filepointer.open("user.bin", std::ios::binary | std::ios::in);
+    blocked_to_list.open(path+LoggedInUser.name+"/blocked_to.bin", std::ios::binary | std::ios::app);
+    
+    if (main_filepointer.is_open())
     {
-        while (filepointer.read((char*)&a, sizeof(User)))
+        while (main_filepointer.read((char*)&a, sizeof(User)))
         {
             if (!std::strcmp(user_name000,a.username))
             {
+                strcpy(name_of_user,a.name);
                 userfound = true;
+                name_foll name_of_friend(user_name000);
+                blocked_to_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
+                blocked_by_list.open(path+name_of_user+"/blocked_by.bin",ios::app|ios::binary);
+                blocked_by_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 break;
             }
         }
-        filepointer.close();
+        blocked_by_list.close();
+        blocked_to_list.close();
+        main_filepointer.close();
     }
     if (userfound)
     {
-        std::cout<<user_name000<<" has been block successfully!!!\n";
+        std::cout<<user_name000<<" has been blocked successfully!!!\n\n";
     }
     else 
     {
-        std::cout<<"No user with username: "<<user_name000<<" exists!.";
+        std::cout<<"No user with username: "<<user_name000<<" exists!.\n\n";
     }
 }
 void adduser()
 {
     int answer;
-    std::cout<<std::setw(67)<<"PRIVACY\n";
-    std::cout<<"1. Follow User \n";
-    std::cout<<"2. Block User \n";
-    std::cout<<"3. Exit\n";
-    std::cout<<"Enter the required option...";
-    std::cin>>answer;
+    cout<<std::setw(67)<<"PRIVACY\n";
+    cout<<"1. Add a friend.\n";
+    cout<<"2. Block a friend.\n";
+    cout<<"3. Exit\n";
+    cout<<"Enter the required option... ";
+    cin>>answer;
     switch(answer)
     {
         case 1:
-        add_friend();
-        break;
+            add_friend();
+            break;
         case 2:
-        block_friend();
-        break;
+            block_friend();
+            break;
         default:
-        exit(0);
-        break;
+            exit(0);
+            break;
     }
 }

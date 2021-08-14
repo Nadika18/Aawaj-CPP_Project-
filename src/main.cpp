@@ -12,11 +12,11 @@ extern char currentLoggedInUsername[20];
 extern bool isLoggedIn, isUser;
 extern User LoggedInUser;
 extern char current_user_username[20];
+extern void call_home();
+extern void adduser();
 
 int main()
 {
-    
-    //Register();
 menu:
     std::system("CLS");
     std::cout<<"1. Register"<<std::endl;
@@ -27,24 +27,29 @@ menu:
     std::cin>>i;
     switch(i){
         case 1:
-        std::system("CLS");
-        Register();
-        goto menu;
-        break;
-        case 2:
-        std::system("CLS");
-        char usr[20];
-        char pwd[20];
-        std::cout<<"enter username"<<std::endl;
-        std::cin>>usr;
-        std::cout<<"enter password"<<std::endl;
-        std::cin>>pwd;
-        login(usr,pwd);
-        if(isLoggedIn){
-        std::cout<<"Successfully Logged In!!!!!!!!!"<<std::endl;
+        {
+            std::system("CLS");
+            Register();
+            goto menu;
+            break;
         }
-        goto home;
-        break;
+        case 2:
+        {            
+            std::system("CLS");
+            char usr[20];
+            char pwd[20];
+            std::cout<<"enter username"<<std::endl;
+            std::cin>>usr;
+            std::cout<<"enter password"<<std::endl;
+            std::cin>>pwd;
+            login(usr,pwd);
+            if(isLoggedIn)
+            {
+                std::cout<<"Successfully Logged In!!!!!!!!!"<<std::endl;
+            }
+            goto home;
+            break;
+        }
         case 3:
             exit(0);
     }
@@ -65,6 +70,8 @@ menu:
         case 1:
             std::system("CLS");
             adduser();
+            std::getchar();
+            goto home;
             break;
         case 2:
         post:
