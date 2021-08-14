@@ -112,12 +112,12 @@ void block_friend()
 void adduser()
 {
     int answer;
-    cout<<std::setw(67)<<"PRIVACY\n";
-    cout<<"1. Add a friend.\n";
-    cout<<"2. Block a friend.\n";
-    cout<<"3. Exit\n";
-    cout<<"Enter the required option... ";
-    cin>>answer;
+    std::cout<<std::setw(67)<<"PRIVACY\n";
+    std::cout<<"1. Follow User \n";
+    std::cout<<"2. Block User \n";
+    std::cout<<"3. Exit\n";
+    std::cout<<"Enter the required option...";
+    std::cin>>answer;
     switch(answer)
     {
         case 1:

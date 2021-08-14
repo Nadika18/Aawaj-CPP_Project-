@@ -5,7 +5,6 @@
 #include <string>
 #include <cstring>
 #include <windows.h>
-#include <cstdio> // include for std::rename
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -72,13 +71,9 @@ class message{
         return (msgtime < str.msgtime);
     }
     friend void viewmessage(message &);
-    
-    friend ostream& operator<<(ostream &out,message &p);
-
 };
 
 void changeColor(int);
-
 void viewsenders(){
     char p[20];
     string path="../data/messages/";
@@ -126,7 +121,7 @@ void viewmessage(message &p){
     }
     receiverFile.close();
     std::sort(v.begin(), v.end());
-   for(auto it = v.begin(); it != v.end(); it++) {
+    for(auto it = v.begin(); it != v.end(); it++) {
         if(!strcmp(it->sender, currentLoggedInUsername)){
         cout.width(100);
         cout.setf(ios::right);
