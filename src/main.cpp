@@ -84,7 +84,7 @@ menu:
             std::cout<<"Enter the post body"<<std::endl;
             std::cin.ignore();
             std::cin.getline(postbody,150);
-            posts post(postbody);
+            posts post(postbody,1);
             post.sendPosts();
             goto post;
             break; 
@@ -93,8 +93,10 @@ menu:
             {
             std::system("CLS");
             viewPosts();
-            std::getchar();
-             goto post;
+            char c;
+            cout<<"Press c to contine"<<endl;
+            cin>>c;
+            goto post;
             break;
             }
             case 3:
@@ -141,13 +143,15 @@ menu:
             message m(sender);
             std::system("CLS");
             viewmessage(m);
-            std::getchar();
+            cout<<"Press c key to continue"<<endl;
+            char n;
+            cin>>n;
             goto message;
             break;
             }
             case 3:
             goto home;
-            }
+        }
 
         }
         break;
