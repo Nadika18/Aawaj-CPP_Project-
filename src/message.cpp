@@ -40,18 +40,19 @@ class message{
        strcpy(receiver, rec); 
       
     }
+    // yo bujhena
     time_t getCurrentTime(){
         time_t t; // t passed as argument in function time()
         struct tm * tt; // decalring variable for localtime()
         time (&t); //passing argument to time()
         return t;
-    }
+    }   
     char *showMsgTime(){
-    time_t t; // t passed as argument in function time()
-    struct tm * tt; // decalring variable for localtime()
-    time (&t); //passing argument to time()
-    tt = localtime(&t);
-    return asctime(tt);
+        time_t t; // t passed as argument in function time()
+        struct tm * tt; // decalring variable for localtime() --here tt is a variable for local time.
+        time (&t); //passing argument to time()
+        tt = localtime(&t);
+        return asctime(tt); 
     };
     void sendMessage(){
         

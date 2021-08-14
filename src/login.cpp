@@ -31,12 +31,6 @@ public:
 class User : public Person
 {
 protected: 
-    // int n_followers=0;
-    // int n_following=0;
-    // int n_posts=0;
-    // std::string *name_of_followers;
-    // std::string *name_of_following;
-    // std::string *users_posts;
 public:
     friend std::ifstream &operator>>(std::ifstream &, User &);
     friend std::ofstream &operator<<(std::ofstream &, User &);
