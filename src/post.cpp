@@ -14,7 +14,7 @@
 using namespace std;
 class posts{
     protected:
-    static int postId;
+    int postId;
     char author[20];
     char postBody[250];
     time_t posttime;
@@ -25,8 +25,13 @@ class posts{
        strcpy(author, currentLoggedInUsername); 
        strcpy(postBody,postbody);
        posttime= getCurrentTime();
-       postId++;
-      
+
+    }
+    posts(char postbody[], int i){
+        postId=getNewPostId();
+        strcpy(author, currentLoggedInUsername); 
+        strcpy(postBody,postbody);
+        posttime= getCurrentTime();
     }
     time_t getCurrentTime(){
         time_t t; // t passed as argument in function time()
@@ -41,6 +46,19 @@ class posts{
     tt = localtime(&t);
     return asctime(tt);
     };
+    int getNewPostId(){
+        fstream postfile;
+        postfile.open("../data/posts/post.bin", ios::in | ios::ate);
+        if(postfile.is_open() && postfile.tellg()!= 0){
+        postfile.seekg(-sizeof(posts), ios::cur);
+        posts a;
+        postfile.read((char *)&a, sizeof(posts));
+        postfile.close();
+        return a.postId +1 ; 
+        }
+        postfile.close();
+        return 1; 
+    }
     void sendPosts(){
         fstream postfile;
         postfile.open("../data/posts/post.bin", ios::app);
@@ -50,7 +68,7 @@ class posts{
         postId3= to_string(this->postId);
         string extension= ".bin";
         fstream commentfile;
-        commentfile.open(("../data/posts/"+postId3+extension).c_str(), ios::in);
+        commentfile.open(("../data/posts/"+postId3+extension).c_str(), ios::app);
         commentfile.close();  
     }
     bool operator < (const posts& str) const
@@ -60,7 +78,7 @@ class posts{
     friend void viewPosts();
     
 };
-int posts::postId;
+
 void changeColorr(int desiredColor){ 
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), desiredColor); 
 } 
@@ -72,11 +90,6 @@ void viewPosts(){
     postfile.open("../data/posts/post.bin", ios::in);
     while(postfile.read((char *)&p, sizeof(posts))){
         v.push_back(p);
-        string postId1;
-        postId1= to_string(p.postId);
-        string extension= ".bin";
-        commentfile.open(("../data/posts/"+postId1+extension).c_str(), ios::app);
-        commentfile.close();
     };
     postfile.close();
     std::sort(v.begin(), v.end());
@@ -90,9 +103,13 @@ void viewPosts(){
         string postId2;
         postId2= to_string(it->postId);
         string extension= ".bin";
-        commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::in);
+        try{
+            commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::in);
+        if(!commentfile.is_open()){
+            throw 1;
+        }else{
         posts a;
-        while(commentfile.read((char *)&a, sizeof(a))){
+        while(commentfile.read((char *)&a, sizeof(posts))){
             cout<<a.author<<": ";
             changeColor(14);
             cout<<a.postBody<<endl;
@@ -100,7 +117,12 @@ void viewPosts(){
             cout<<asctime(localtime(&a.posttime));
             cout<<endl;
            };
-        commentfile.close();    
+        
+        }
+        commentfile.close();
+        }catch(int e){
+            cout<<"There are not any comments"<<endl;
+        }
         char ans;
         cout<<"Comment y/n?"<<endl;
         cin>>ans;
@@ -111,9 +133,9 @@ void viewPosts(){
         std::cin.ignore();
         std::cin.getline(comment,150);
         posts c(comment);
-        commentfile.write((char *)&c, sizeof(c));
+        commentfile.write((char *)&c, sizeof(posts));
         }
-        commentfile.close();    
+        commentfile.close();
+        }
     }
     
-    }

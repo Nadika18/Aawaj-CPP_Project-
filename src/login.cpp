@@ -31,12 +31,6 @@ public:
 class User : public Person
 {
 protected: 
-    int n_followers=0;
-    int n_following=0;
-    int n_posts=0;
-    std::string *name_of_followers;
-    std::string *name_of_following;
-    std::string *users_posts;
 public:
     friend std::ifstream &operator>>(std::ifstream &, User &);
     friend std::ofstream &operator<<(std::ofstream &, User &);
@@ -57,6 +51,7 @@ public:
     friend void view_followers();
     friend void view_following();
     friend void view_posts();
+    friend void blocked_people();
 };
 
 
@@ -70,7 +65,7 @@ std::ifstream &operator>>(std::ifstream &ifile, User &p)
 
 std::istream &operator>>(std::istream &ifile, User &p)
 {
-   std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+     std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
 std::cout <<"\t\t" << char(179) << "  Enter your name :      " << char(179) << std::endl;
 std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
 std::cin >> p.name;
@@ -169,6 +164,7 @@ check:
     }
     if (userfound)
     {
+        
         std::cout << "User with the given username already exists" << std::endl;
         std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
         std::cout << "\t\t" <<char(179) << "  Enter your username :  " << char(179) << std::endl;
@@ -183,10 +179,25 @@ check:
         std::string path="../data/messages/";
         mkdir((path+p.username).c_str());
         std::string path1="../data/follow/";
-        std::fstream followfilee;
-        followfilee.open((path1+p.username+".bin").c_str(), std::ios::app);
-        followfilee.close();
+        mkdir((path1+p.username).c_str());
+
         return true;
     }
     return false;
+};
+
+class name_foll
+{
+    private:
+        char nnamm[20];
+    public:
+        name_foll() {};
+        name_foll(char a[20])
+        {
+            std::strcpy(nnamm,a);
+        }
+        void display()
+        {   
+            std::cout<<nnamm<<std::endl;
+        }
 };

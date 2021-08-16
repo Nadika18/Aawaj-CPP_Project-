@@ -5,7 +5,6 @@
 #include <string>
 #include <cstring>
 #include <windows.h>
-#include <cstdio> // include for std::rename
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -40,18 +39,19 @@ class message{
        strcpy(receiver, rec); 
       
     }
+    // yo bujhena
     time_t getCurrentTime(){
         time_t t; // t passed as argument in function time()
         struct tm * tt; // decalring variable for localtime()
         time (&t); //passing argument to time()
         return t;
-    }
+    }   
     char *showMsgTime(){
-    time_t t; // t passed as argument in function time()
-    struct tm * tt; // decalring variable for localtime()
-    time (&t); //passing argument to time()
-    tt = localtime(&t);
-    return asctime(tt);
+        time_t t; // t passed as argument in function time()
+        struct tm * tt; // decalring variable for localtime() --here tt is a variable for local time.
+        time (&t); //passing argument to time()
+        tt = localtime(&t);
+        return asctime(tt); 
     };
     void sendMessage(){
         
@@ -64,7 +64,7 @@ class message{
         receiverFile.close();
         fstream databasefile;
         databasefile.open((path+rec+"/database.bin").c_str(),ios::app);
-        databasefile<<sender<<std::endl;
+        databasefile<<sender<<endl;
                 
     }
     bool operator < (const message& str) const
@@ -72,20 +72,16 @@ class message{
         return (msgtime < str.msgtime);
     }
     friend void viewmessage(message &);
-    
-    friend ostream& operator<<(ostream &out,message &p);
-
 };
 
 void changeColor(int);
-
 void viewsenders(){
     char p[20];
     string path="../data/messages/";
     string rec(currentLoggedInUsername);
     fstream databasefile;
     databasefile.open((path+rec+"/database.bin").c_str(),ios::in);
-    std::cout<<"Inbox:"<<std::endl;
+    cout<<"Inbox:"<<endl;
     set<string, greater<string> >s1;
     while(!databasefile.eof()){
     databasefile>>p;
@@ -96,11 +92,11 @@ void viewsenders(){
     set<string, greater<string> >::iterator itr;
     for (itr = s1.begin(); itr != s1.end(); itr++)
     {
-        std::cout << *itr<<" "<<std::endl;
+        cout << *itr<<" "<<endl;
     }
-    std::cout<<std::endl;
-    std::cout<<"Whose message would you like to view ?"<<std::endl;
-    std::cout<<std::endl;
+    cout<<endl;
+    cout<<"Whose message would you like to view ?"<<endl;
+    cout<<endl;
     databasefile.close();
 }
 
@@ -126,22 +122,22 @@ void viewmessage(message &p){
     }
     receiverFile.close();
     std::sort(v.begin(), v.end());
-   for(auto it = v.begin(); it != v.end(); it++) {
+    for(auto it = v.begin(); it != v.end(); it++) {
         if(!strcmp(it->sender, currentLoggedInUsername)){
-        std::cout.width(100);
-        std::cout.setf(ios::right);
+        cout.width(100);
+        cout.setf(ios::right);
         changeColor(1);
-        std::cout<<it->messageBody<<std::endl;
+        cout<<it->messageBody<<endl;
         changeColor(7);
-        std::cout.width(100);
-        std::cout.setf(ios::right);
-        std::cout<<asctime(localtime(&it->msgtime))<<std::endl;
+        cout.width(100);
+        cout.setf(ios::right);
+        cout<<asctime(localtime(&it->msgtime))<<endl;
         }else{
-            std::cout<<it->sender<<": ";
+            cout<<it->sender<<": ";
             changeColor(14);
-            std::cout<<it->messageBody<<std::endl;
+            cout<<it->messageBody<<endl;
             changeColor(15);
-            std::cout<<asctime(localtime(&it->msgtime));
+            cout<<asctime(localtime(&it->msgtime));
         }
         
    }   
