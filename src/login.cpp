@@ -208,12 +208,14 @@ bool check_user(char usernamee[])
 {
     std::string path= "../data/follow/";
     std::fstream to_check_for_block;
+    std::string recc(currentLoggedInUsername);
     bool userfoundd = false;
     try 
         {
-            to_check_for_block.open((path+currentLoggedInUsername+"blocked_by.bin").c_str(), std::ios::binary | std::ios::in);
-            if (!to_check_for_block.is_open())
+            to_check_for_block.open((path+recc+"/blocked_by.bin").c_str(), std::ios::in);
+            if (!to_check_for_block.is_open()){
                 throw 1;
+            }
             name_foll a;
             
             while (to_check_for_block.read((char *)&a, sizeof(name_foll)))
@@ -225,7 +227,7 @@ bool check_user(char usernamee[])
                 }
             }
             }
-            catch (...)
+            catch (int i)
             {
                 std::cout << "No user file exists" << std::endl;
                 

@@ -196,18 +196,19 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             std::cout<<"Enter the username of receiver"<<std::endl;
             char receiver[20];
             std::cin>>receiver;
-
-            char msgbody[250];
-            std::cout<<"Enter the msg body"<<std::endl;
-            std::cin.ignore();
-            std::cin.getline(msgbody,150);
-            bool answer=check_user(receiver);
+            bool answer;
+            answer= check_user(receiver);
             if (answer)
-            {
-                std::cout<<"\n\nYou have been blocked by this user.\n\n";
+            { 
+                std::cout<<"You have been blocked by this user. Press c to continue"<<std::endl;
+                char n;  
+                std::cin>>n;
             }
             else
-            {
+            {   char msgbody[250];
+                std::cout<<"Enter the msg body"<<std::endl;
+                std::cin.ignore();
+                std::cin.getline(msgbody,150);
                 message msg(receiver,msgbody);
                 msg.sendMessage();
             }
