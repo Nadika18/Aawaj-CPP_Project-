@@ -15,6 +15,8 @@ extern char current_user_username[20];
 extern void call_home();
 extern void adduser();
 
+
+
 int main()
 {
   
@@ -199,8 +201,16 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             std::cout<<"Enter the msg body"<<std::endl;
             std::cin.ignore();
             std::cin.getline(msgbody,150);
-            message msg(receiver,msgbody);
-            msg.sendMessage();
+            bool answer=check_user(receiver);
+            if (answer)
+            {
+                std::cout<<"\n\nYou have been blocked by this user.\n\n";
+            }
+            else
+            {
+                message msg(receiver,msgbody);
+                msg.sendMessage();
+            }
             goto message;
             break; 
             }
@@ -294,3 +304,4 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
     } 
     return 0;  
 };
+
