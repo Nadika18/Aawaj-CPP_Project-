@@ -78,7 +78,7 @@ void block_friend()
     cin>>user_name000;
 
     main_filepointer.open("user.bin", std::ios::binary | std::ios::in);
-    blocked_to_list.open(path+LoggedInUser.name+"/blocked_to.bin", std::ios::binary | std::ios::app);
+    blocked_to_list.open((path+currentLoggedInUsername+"/blocked_to.bin").c_str(), std::ios::binary | std::ios::app);
     
     if (main_filepointer.is_open())
     {

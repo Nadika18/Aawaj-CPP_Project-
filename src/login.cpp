@@ -4,6 +4,8 @@
 #include <process.h>
 #include <dir.h>
 #include <cstring>
+#include <cstring>
+#include <string>
 enum usertype
 {
     admin,
@@ -200,7 +202,40 @@ class name_foll
         {   
             std::cout<<nnamm<<std::endl;
         }
+<<<<<<< HEAD
         friend void view_followers();
         friend void view_following();
         friend void blocked_people();
 };
+=======
+        friend bool check_user(char []);
+};
+bool check_user(char usernamee[])
+{
+    std::string path= "../data/follow/";
+    std::fstream to_check_for_block;
+    bool userfoundd = false;
+    try 
+        {
+            to_check_for_block.open((path+currentLoggedInUsername+"blocked_by.bin").c_str(), std::ios::binary | std::ios::in);
+            if (!to_check_for_block.is_open())
+                throw 1;
+            name_foll a;
+            
+            while (to_check_for_block.read((char *)&a, sizeof(name_foll)))
+            {
+                if (!std::strcmp(usernamee,a.nnamm))
+                {
+                    userfoundd = true;
+                    break;
+                }
+            }
+            }
+            catch (...)
+            {
+                std::cout << "No user file exists" << std::endl;
+                
+            }
+        return userfoundd;
+}
+>>>>>>> 3f520012891023897a3e618326a83d06c108bf18
