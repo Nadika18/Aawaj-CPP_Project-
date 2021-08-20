@@ -1,13 +1,22 @@
 #pragma once
 #include <iostream>
+#include <ctime>
 #include <fstream>
-#include "login.cpp"
+#include <string>
 #include <cstring>
-#include<string>
+#include <windows.h>
+#include <vector>
+#include <algorithm>
+#include <iterator>
+#include <set>
+#include "login.cpp"
+
 using std::cout;    using std::fstream;
 using std::cin;     using std::ios;
 using std::endl;
 using std::string;
+using std::set;
+
 User universal_user;
 string path="../data/follow/";
 
@@ -24,18 +33,27 @@ if (file.is_open())
 }
 
 void view_followers()
-{
+{   
     fstream p_view_follow;
-
+    name_foll n;
     p_view_follow.open((path+LoggedInUser.name+"/followers.bin").c_str(),ios::in|ios::binary);
     if (p_view_follow)
     {
-        while(!p_view_follow.eof())
-        {
-            name_foll name_of_follower;
-            p_view_follow.read(reinterpret_cast<char*>(&name_of_follower),sizeof(name_of_follower));
-            name_of_follower.display();
-        }
+        set<string> s1;
+        while(!p_view_follow.eof()){
+        p_view_follow.read(reinterpret_cast<char*>(&n),sizeof(name_foll));
+        string s(n.nnamm);
+        s1.insert(s);
+    }
+    // printing set s1
+    set<string>::iterator itr;
+    cout<<"The people who follow you: "<<endl;
+    for (auto itr = s1.begin(); itr != s1.end(); itr++)
+    {
+        cout<<*itr<<endl;
+        cout<<endl;
+    }
+    cout<<endl;
        
         p_view_follow.close();    
     }
@@ -47,61 +65,66 @@ void view_followers()
 
 void view_following()
 {
-    cout<<"The people you follow are: "<<endl;
     fstream p_view_follow;
-
+    name_foll n;
     p_view_follow.open((path+LoggedInUser.name+"/following.bin").c_str(),ios::in|ios::binary);
     if (p_view_follow)
     {
-        while(!p_view_follow.eof())
-        {
-            name_foll name_of_follower;
-            p_view_follow.read(reinterpret_cast<char*>(&name_of_follower),sizeof(name_of_follower));
-            name_of_follower.display();
-        }
+        set<string> s1;
+        while(!p_view_follow.eof()){
+        p_view_follow.read(reinterpret_cast<char*>(&n),sizeof(name_foll));
+        string s(n.nnamm);
+        s1.insert(s);
+    }
+    // printing set s1
+    set<string>::iterator itr;
+    cout<<"The people you follow are: "<<endl;
+    for (auto itr = s1.begin(); itr != s1.end(); itr++)
+    {
+        cout<<*itr<<endl;
+        cout<<endl;
+    }
+    cout<<endl;
        
         p_view_follow.close();    
     }
     else
     {
-        cout<<"You don't follow anyone.";
-    } 
+        cout<<"You dont follow anyone!!";
+    }  
 }
 
 void blocked_people()
 {
-    
-    cout<<"The people you follow are: \n"<<endl;
     fstream p_view_blocked;
-
+    name_foll n;
     p_view_blocked.open((path+LoggedInUser.name+"/blocked_to.bin").c_str(),ios::in|ios::binary);
     if (p_view_blocked)
     {
-        while(!p_view_blocked.eof())
-        {
-            name_foll name_of_follower;
-            p_view_blocked.read(reinterpret_cast<char*>(&name_of_follower),sizeof(name_of_follower));
-            name_of_follower.display();
-        }
+        set<string> s1;
+        while(!p_view_blocked.eof()){
+        p_view_blocked.read(reinterpret_cast<char*>(&n),sizeof(name_foll));
+        string s(n.nnamm);
+        s1.insert(s);
+    }
+    // printing set s1
+    set<string>::iterator itr;
+    cout<<"The people you have blocked are: \n"<<endl;
+    for (auto itr = s1.begin(); itr != s1.end(); itr++)
+    {
+        cout<<*itr<<endl;
+        cout<<endl;
+    }
+    cout<<endl;
        
         p_view_blocked.close();    
     }
     else
     {
         cout<<"You have not blocked anyone.";
-    } 
+    }  
 }
- void view_posts()
- {
 
- }
-// {
-//     cout<<"Your posts are: "<<endl;
-//     for (int i =0;i<=LoggedInUser.n_posts;i++)
-//     {
-//         cout<<i+1<<". "<<LoggedInUser.users_posts[i]<<endl;
-//     }
-// }
 void display_profile()
 {
     int answer;
@@ -127,14 +150,12 @@ std::cout <<"\t\t" << char(179) << "   1.Followers      " << char(179) << std::e
 
 std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
 std::cout << "\t\t" <<char(179) << "   2.Followings      " << char(179) << std::endl;
-std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   3.Past Posts      " << char(179) << std::endl;
 
 std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   4.Blocked Users   " << char(179) << std::endl;
+std::cout << "\t\t" <<char(179) << "   3.Blocked Users   " << char(179) << std::endl;
 
 std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   5.Exit            " << char(179) << std::endl;
+std::cout << "\t\t" <<char(179) << "   4.Exit            " << char(179) << std::endl;
 
 std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
     
@@ -152,10 +173,6 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             view_following();
             break;
         case 3:
-            std::system("CLS");
-            view_posts();
-            break;
-        case 4:
             std::system("CLS");
             blocked_people();
             break;

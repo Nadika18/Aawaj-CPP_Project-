@@ -260,10 +260,9 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             std::cout<<"Do you want to view the usernames of your friends?\n ";
             std::cout<<"1. View my followers?"<<std::endl;
             cout<<"2. View people who I follow?"<<endl;
-            cout<<"3. Or check all your past posts?"<<endl;
-            cout<<"4.Blocked people."<<endl;
-            cout<<"5. Exit the program"<<endl;
-            cout<<"\nYou choice: ";
+            cout<<"3.Blocked people."<<endl;
+            cout<<"4. Exit the program"<<endl;
+            cout<<"\nYour choice: ";
             cin>>answer;
             char l;
             switch(answer)
@@ -283,17 +282,12 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
                 break;
                 case 3:
                 std::system("CLS");
-                view_posts();
-                std::cin>>l;
-                goto profile;
-                break;
-                case 4:
-                std::system("CLS");
                 blocked_people();
                 std::cin>>l;
                 goto profile;
                 break;
-                case 5:
+                default:
+                std::system("CLS");
                 goto home;
                 break;
             }

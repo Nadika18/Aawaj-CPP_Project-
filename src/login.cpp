@@ -202,6 +202,9 @@ class name_foll
         {   
             std::cout<<nnamm<<std::endl;
         }
+        friend void view_followers();
+        friend void view_following();
+        friend void blocked_people();
         friend bool check_user(char []);
 };
 bool check_user(char usernamee[])

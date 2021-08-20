@@ -37,12 +37,13 @@ follower vanne file kholcha ani tyasma value add garcha.
         {
             if (!std::strcmp(user_name000,a.username))
             {
+                name_foll n_foll(LoggedInUser.username);
                 name_foll name_of_friend(user_name000);
                 strcpy(name_of_user,a.name);
                 userfound = true;
                 p_follow.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 user_following.open(path+name_of_user+"/followers.bin",ios::app|ios::binary);
-                user_following.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
+                user_following.write(reinterpret_cast<char*>(&n_foll),sizeof(n_foll));
                 break;
             }
         }
