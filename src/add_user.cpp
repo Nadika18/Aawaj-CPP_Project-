@@ -13,7 +13,7 @@ void add_friend()
 {
 
     char name_of_user[20];
-    string path= "../data/follow/";
+    string path= "../d ata/follow/";
     std::system("CLS");
     fstream main_filepointer;
     fstream p_follow;          //jasle follow garcha tyasko
@@ -87,7 +87,7 @@ void block_friend()
             {
                 strcpy(name_of_user,a.name);
                 userfound = true;
-                name_foll name_of_friend(user_name000);
+                name_foll name_of_friend(user_name000);   //create object and write in the form of object
                 blocked_to_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
                 blocked_by_list.open(path+name_of_user+"/blocked_by.bin",ios::app|ios::binary);
                 blocked_by_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));

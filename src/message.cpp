@@ -52,12 +52,13 @@ class message{
         time (&t); //passing argument to time()
         tt = localtime(&t);
         return asctime(tt); 
-    };
+    }
+
     void sendMessage(){
         
         string path="../data/messages/";
         string extension= ".bin";
-        string sdr(sender), rec(receiver);
+        string sdr(sender), rec(receiver);   // ?kina gareko //string conversion and initializaion
         fstream receiverFile;
         receiverFile.open((path+rec+"/"+sdr+extension).c_str(), ios::app);
         receiverFile.write((char *)this, sizeof(message));
@@ -82,7 +83,7 @@ void viewsenders(){
     fstream databasefile;
     databasefile.open((path+rec+"/database.bin").c_str(),ios::in);
     cout<<"Inbox:"<<endl;
-    set<string, greater<string> >s1;
+    set<string, greater<string> >s1; //remain //declare
     while(!databasefile.eof()){
     databasefile>>p;
     string s(p);
@@ -121,7 +122,7 @@ void viewmessage(message &p){
         v.push_back(m);
     }
     receiverFile.close();
-    std::sort(v.begin(), v.end());
+    std::sort(v.begin(), v.end());  //rem
     for(auto it = v.begin(); it != v.end(); it++) {
         if(!strcmp(it->sender, currentLoggedInUsername)){
         cout.width(100);
