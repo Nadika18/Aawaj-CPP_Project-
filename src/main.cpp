@@ -17,11 +17,23 @@ extern void adduser();
 
 int main()
 {
+  
 menu:
     std::system("CLS");
-    std::cout<<"1. Register"<<std::endl;
-    std::cout<<"2. Login"<<std::endl;
-    std::cout<<"3. Exit"<<std::endl;
+      
+   //system( "color 61" ); 
+std::cout << "\t\t" <<char(201);      for(int i=0; i<20; i++){std::cout  << char(205);}      std::cout << char(187) << std::endl;
+std::cout  <<"\t\t" << char(186) << "       AAWAJ        " << char(186) << std::endl;
+std::cout  << "\t\t" <<char(200);      for(int i=0; i<20; i++){std::cout  << char(205);}      std::cout << char(188) << std::endl;
+std::cout  << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout << char(191) << std::endl;
+std::cout  <<"\t\t" << char(179) << "   1.Register       " << char(179) << std::endl;
+
+std::cout  << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout << char(180)  << std::endl;
+std::cout  << "\t\t" <<char(179) << "   2.login          " << char(179) << std::endl;
+std::cout  << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout  << char(180)  << std::endl;
+std::cout  << "\t\t" <<char(179) << "   3.Exit           " << char(179) << std::endl;
+
+std::cout  << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout  << char(196);}   std::cout  << char(217) << std::endl;
     std::cout<<"Press the required option 1, 2, 3...."<<std::endl;
     int i;
     std::cin>>i;
@@ -38,10 +50,14 @@ menu:
             std::system("CLS");
             char usr[20];
             char pwd[20];
-            std::cout<<"enter username"<<std::endl;
-            std::cin>>usr;
-            std::cout<<"enter password"<<std::endl;
-            std::cin>>pwd;
+            std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+        std::cout << "\t\t" <<char(179) << "  Enter your username :  " << char(179) << std::endl;
+        std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+        std::cin >> usr;
+       std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+        std::cout << "\t\t" <<char(179) << "  Enter your password :  " << char(179) << std::endl;
+        std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+        std::cin >> pwd;
             login(usr,pwd);
             if(isLoggedIn)
             {
@@ -57,11 +73,22 @@ menu:
     {
         {
     std::system("CLS");
-    std::cout<<"1. Privacy"<<std::endl;
-    std::cout<<"2. Post"<<std::endl;
-    std::cout<<"3. Message"<<std::endl;
-    std::cout<<"4. User Profile"<<std::endl;
-    std::cout<<"5. Logout"<<std::endl;
+     std::system("CLS");std::cout << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout <<"\t\t" << char(179) << "   1.Privacy        " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   2.POst           " << char(179) << std::endl;
+std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   3.Message        " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   4.User Profile   " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   5.Log Out        " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+   
     std::cout<<"Select the required optiton";
     std::cin>>i;
         }
@@ -73,9 +100,15 @@ menu:
             std::system("CLS");
             int answer;
             cout<<std::setw(67)<<"PRIVACY\n";
-            cout<<"1. Add a friend.\n";
-            cout<<"2. Block a friend.\n";
-            cout<<"3. Exit\n";
+            std::cout  << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout << char(191) << std::endl;
+std::cout  <<"\t\t" << char(179) << "   1.Add Friend     " << char(179) << std::endl;
+
+std::cout  << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout << char(180)  << std::endl;
+std::cout  << "\t\t" <<char(179) << "   2.Block Friend   " << char(179) << std::endl;
+std::cout  << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout  << char(180)  << std::endl;
+std::cout  << "\t\t" <<char(179) << "   3.Exit           " << char(179) << std::endl;
+std::cout  << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout  << char(196);}   std::cout  << char(217) << std::endl;
+     
             cout<<"Enter the required option... ";
             cin>>answer;
             switch(answer)
@@ -97,9 +130,14 @@ menu:
         post:
         {
         std::system("CLS");
-        std::cout<<"1. Write Post"<<endl;
-        std::cout<<"2. View Posts"<<endl;
-        std::cout<<"3. Exit"<<endl;
+                         std::cout << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout <<"\t\t" << char(179) << "   1.Write Post     " << char(179) << std::endl;
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   2.View Posts     " << char(179) << std::endl;
+std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   3.Exit           " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+       
         int y;
         cin>>y;
         {
@@ -139,9 +177,13 @@ menu:
         message:
         {
         std::system("CLS");
-        std::cout<<"1. Send Message"<<endl;
-        std::cout<<"2. View Inbox"<<endl;
-        std::cout<<"3. Exit"<<endl;
+    std::cout << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout <<"\t\t" << char(179) << "   1.Send Message   " << char(179) << std::endl;
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   2.View Inbox     " << char(179) << std::endl;
+std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   3.Exit           " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
         int z;
         cin>>z;
         {
@@ -203,6 +245,7 @@ menu:
             cout<<"_";
             cout<<endl<<endl<<endl;
             std::cout<<std::endl<<std::endl<<std::endl;
+            display_photo();
             std::cout<<"Do you want to view the usernames of your friends?\n ";
             std::cout<<"1. View my followers?"<<std::endl;
             cout<<"2. View people who I follow?"<<endl;

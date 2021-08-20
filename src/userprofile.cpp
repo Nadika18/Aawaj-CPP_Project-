@@ -3,7 +3,7 @@
 #include <fstream>
 #include "login.cpp"
 #include <cstring>
-
+#include<string>
 using std::cout;    using std::fstream;
 using std::cin;     using std::ios;
 using std::endl;
@@ -11,6 +11,17 @@ using std::string;
 User universal_user;
 string path="../data/follow/";
 
+void display_photo(){
+       std:: ifstream file("my.txt");
+if (file.is_open())
+{	
+    std::string line;
+	while (getline(file, line))
+    {  
+    	std::cout << line << std::endl;
+    }
+}
+}
 
 void view_followers()
 {
@@ -96,7 +107,7 @@ void display_profile()
     int answer;
     cout<<"\n\n\n\n";
     cout.fill(' ');
-    cout.width(60);
+    cout.width(60);    
     cout<<"Welcome "<<LoggedInUser.username<<"!!!\n";
     cout.setf(ios::left);
     cout.width(40);
@@ -106,15 +117,28 @@ void display_profile()
     cout.width(50);
     cout.fill('_');
     cout<<"_";
+        display_photo();
     cout<<endl<<endl<<endl;
     std::cout<<std::endl<<std::endl<<std::endl;
-    std::cout<<"Do you want to view the usernames of your friends?\n ";
-    std::cout<<"1. View my followers?"<<std::endl;
-    cout<<"2. View people who I follow?"<<endl;
-    cout<<"3. Or check all your past posts?"<<endl;
-    cout<<"4.Blocked people."<<endl;
-    cout<<"4. Exit the program"<<endl;
-    cout<<"\nYou choice: ";
+
+    //std::cout<<"Do you want to view the usernames of your friends?\n ";
+       std::system("CLS");std::cout << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout <<"\t\t" << char(179) << "   1.Followers      " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   2.Followings      " << char(179) << std::endl;
+std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   3.Past Posts      " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   4.Blocked Users   " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
+std::cout << "\t\t" <<char(179) << "   5.Exit            " << char(179) << std::endl;
+
+std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+    
+    cout<<"\nYour choice: ";
     cin>>answer;
     switch(answer)
     {

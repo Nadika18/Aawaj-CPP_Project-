@@ -65,14 +65,22 @@ std::ifstream &operator>>(std::ifstream &ifile, User &p)
 
 std::istream &operator>>(std::istream &ifile, User &p)
 {
-    std::cout << "Enter your name" << std::endl;
-    std::cin >> p.name;
-    std::cout << "Enter your age" << std::endl;
-    std::cin >> p.age;
-    std::cout << "Enter your username" << std::endl;
-    std::cin >> p.username;
-    std::cout << "Enter your password" << std::endl;
-    std::cin >> p.password;
+     std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout <<"\t\t" << char(179) << "  Enter your name :      " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.name;
+std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout << "\t\t" <<char(179) << "  Enter your age      :  " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.age;
+std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout << "\t\t" <<char(179) << "  Enter your username :  " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.username;
+ std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout << "\t\t" <<char(179) << "  Enter your password:   " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.password;
     return ifile;
 };
 std::ostream &operator<<(std::ostream &out, User &p)
@@ -156,8 +164,11 @@ check:
     }
     if (userfound)
     {
+        
         std::cout << "User with the given username already exists" << std::endl;
-        std::cout << "enter a new username" << std::endl;
+        std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+        std::cout << "\t\t" <<char(179) << "  Enter your username :  " << char(179) << std::endl;
+        std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
         std::cin >> p.username;
         goto check;
     }
