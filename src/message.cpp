@@ -58,7 +58,7 @@ class message{
         
         string path="../data/messages/";
         string extension= ".bin";
-        string sdr(sender), rec(receiver);   // ?kina gareko //string conversion and initializaion
+        string sdr(sender), rec(receiver);   
         fstream receiverFile;
         receiverFile.open((path+rec+"/"+sdr+extension).c_str(), ios::app);
         receiverFile.write((char *)this, sizeof(message));
@@ -122,7 +122,7 @@ void viewmessage(message &p){
         v.push_back(m);
     }
     receiverFile.close();
-    std::sort(v.begin(), v.end());  //rem
+    std::sort(v.begin(), v.end());  //sorting in vector
     for(auto it = v.begin(); it != v.end(); it++) {
         if(!strcmp(it->sender, currentLoggedInUsername)){
         cout.width(100);

@@ -10,6 +10,7 @@
 #include <iterator>
 #include <set>
 #include "login.cpp"
+#include "post.cpp"
 
 using std::cout;    using std::fstream;
 using std::cin;     using std::ios;
@@ -167,5 +168,64 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             break;
         default:
             exit(0);
+    }
+}
+void viewOwnPosts(){
+    posts p;
+    vector<posts> v;
+    fstream postfile;
+    fstream commentfile;
+    postfile.open("../data/posts/post.bin", ios::in);
+    while(postfile.read((char *)&p, sizeof(posts))){
+        v.push_back(p);
+    };
+    postfile.close();
+    std::sort(v.begin(), v.end());
+    for(auto it = v.begin(); it != v.end(); it++) {
+        if(!strcpy(it->author,currentLoggedInUsername)){
+        cout<<it->author<<": "<<endl;
+        changeColorr(14);
+        cout<<it->postBody<<endl;
+        changeColorr(15);
+        cout<<asctime(localtime(&it->posttime));
+        cout<<endl;
+        string postId2;
+        postId2= to_string(it->postId);
+        string extension= ".bin";
+        try{
+            commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::in);
+        if(!commentfile.is_open()){
+            throw 1;
+        }else{
+        posts a;
+        while(commentfile.read((char *)&a, sizeof(posts))){
+            cout<<a.author<<": ";
+            changeColor(14);
+            cout<<a.postBody<<endl;
+            changeColor(15);
+            cout<<asctime(localtime(&a.posttime));
+            cout<<endl;
+           };
+        
+        }
+        commentfile.close();
+        }catch(int e){
+            cout<<"There are not any comments"<<endl;
+        }
+        char ans;
+        cout<<"Comment y/n?"<<endl;
+        cin>>ans;
+        if(ans == 'y'){
+        commentfile.open(("../data/posts/"+postId2+extension).c_str(), ios::app);
+        cout<<"Write a comment"<<endl;
+        char comment[150];
+        std::cin.ignore();
+        std::cin.getline(comment,150);
+        posts c(comment);
+        commentfile.write((char *)&c, sizeof(posts));
+        }
+        commentfile.close();
+        }
+    
     }
 }

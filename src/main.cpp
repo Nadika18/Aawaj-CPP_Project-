@@ -245,7 +245,7 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             cout<<"\n\n\n\n";
             cout.fill(' ');
             cout.width(35);
-            cout<<"Welcome  mahima "<<"!!!\n";
+            cout<<"Welcome "<<currentLoggedInUsername<<"!!!\n";
             cout.setf(ios::left);                
             cout.width(60);
             cout.fill('_');
@@ -285,10 +285,17 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
                 std::cin>>l;
                 goto profile;
                 break;
-                case 3:
+                case 4:
                 std::system("CLS");
                 blocked_people();
                 std::cin>>l;
+                goto profile;
+                case 3:
+                std::system("CLS");
+                viewOwnPosts();
+                char c;
+                cout<<"Press c to contine"<<endl;
+                cin>>c;
                 goto profile;
                 break;
                 default:

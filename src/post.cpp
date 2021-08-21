@@ -76,6 +76,7 @@ class posts{
         return (posttime < str.posttime);
     }
     friend void viewPosts();
+    friend void viewOwnPosts();
     
 };
 
@@ -111,7 +112,7 @@ void viewPosts(){
         posts a;
         while(commentfile.read((char *)&a, sizeof(posts))){
             cout<<a.author<<": ";
-            changeColor(14);
+            changeColor(12);
             cout<<a.postBody<<endl;
             changeColor(15);
             cout<<asctime(localtime(&a.posttime));
@@ -138,4 +139,3 @@ void viewPosts(){
         commentfile.close();
         }
     }
-    
