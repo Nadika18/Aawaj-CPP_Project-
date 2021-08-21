@@ -21,7 +21,7 @@ User universal_user;
 string path="../data/follow/";
 
 void display_photo(){
-       std:: ifstream file("my.txt");
+       std:: ifstream file("../data/my.txt");
 if (file.is_open())
 {	
     std::string line;
@@ -128,18 +128,7 @@ void blocked_people()
 void display_profile()
 {
     int answer;
-    cout<<"\n\n\n\n";
-    cout.fill(' ');
-    cout.width(60);    
-    cout<<"Welcome "<<LoggedInUser.username<<"!!!\n";
-    cout.setf(ios::left);
-    cout.width(40);
-    cout.fill(' ');
-    cout<<" ";
-    cout.setf(ios::left);
-    cout.width(50);
-    cout.fill('_');
-    cout<<"_";
+   
         display_photo();
     cout<<endl<<endl<<endl;
     std::cout<<std::endl<<std::endl<<std::endl;

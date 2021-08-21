@@ -67,7 +67,7 @@ std::ifstream &operator>>(std::ifstream &ifile, User &p)
 
 std::istream &operator>>(std::istream &ifile, User &p)
 {
-     std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
 std::cout <<"\t\t" << char(179) << "  Enter your name :      " << char(179) << std::endl;
 std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
 std::cin >> p.name;

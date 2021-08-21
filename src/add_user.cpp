@@ -13,7 +13,7 @@ void add_friend()
 {
 
     char name_of_user[20];
-    string path= "../data/follow/";
+    string path= "../d ata/follow/";
     std::system("CLS");
     fstream main_filepointer;
     fstream p_follow;          //jasle follow garcha tyasko
