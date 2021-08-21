@@ -30,7 +30,7 @@ Execute `CMake:Configure` on Command Palette. If it still didn't configure Cmake
 1. Kits Specified for Cmake: GNU compiler (64/32bit)
 2. `CMake:Quick Start`
 3. `CMake:Build`
- Also, restart IDE(Vs Code) after commands executed.
+- Also, restart IDE(Vs Code) after commands executed.
 
 **After Cmake is configured you get options on the bottom of VS Code to build and run the application using Cmake**
 
