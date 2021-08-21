@@ -9,19 +9,19 @@
 ## BUILD INSTRUCTIONS:
 ___
 ### Installation:
- Mingw: https://sourceforge.net/projects/mingw/
-Cmake: https://cmake.org/install/
-Vscode: https://code.visualstudio.com/download/
+- Mingw: https://sourceforge.net/projects/mingw/
+- Cmake: https://cmake.org/install/
+- Vscode: https://code.visualstudio.com/download/
 
 
 ### Visual studio code extensions :
-C/C++ intellisense
-Cmake/Cmake tools
+- C/C++ intellisense
+- Cmake/Cmake tools
 
 ### Setting environment variables:
 Add the paths given below on environment variables.
-1.path_/mingw/bin  
-2.C:\Program Files\CMake\bin
+1. path_/mingw/bin  
+2. C:\Program Files\CMake\bin
 
 You need to **Configure CMake** on this project in VS code . You will then get options on bottom right of VS Code, to locate **CMakeLists.txt** which is in the project file itself. In case you didn't get that prompt, please follow instructions below to configure Cmake. 
 ### Cmake Configuration through Command Palette(Ctrl+ Shift + P) of VS Code:
@@ -32,9 +32,9 @@ Execute `CMake:Configure` on Command Palette. If it still didn't configure Cmake
 3. CMake Build
 4. CMakeLists.txt locate
 
-After Cmake is configured you get options on the bottom of VS Code to build and run the application using Cmake.
+**After Cmake is configured you get options on the bottom of VS Code to build and run the application using Cmake. **
 
-In order to run the project from terminal use the command below:
+#### In order to run the project from terminal use the command below:
 path_to_file/build/project_name   (project name as specified in cmakelist.txt)
 
 Direct From VS code:
