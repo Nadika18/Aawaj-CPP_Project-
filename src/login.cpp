@@ -4,11 +4,14 @@
 #include <process.h>
 #include <dir.h>
 #include <cstring>
+#include <cstring>
+#include <string>
 enum usertype
 {
     admin,
     user
 };
+
 char currentLoggedInUsername[20];
 bool isLoggedIn, isUser;
 
@@ -36,6 +39,8 @@ public:
     friend std::ofstream &operator<<(std::ofstream &, User &);
     friend std::istream &operator>>(std::istream &, User &);
     friend std::ostream &operator<<(std::ostream &, User &);
+   
+   
     void operator=(User &a)
     {
         std::strcpy(name,a.name);
@@ -57,22 +62,30 @@ public:
 
 User LoggedInUser;
 
-std::ifstream &operator>>(std::ifstream &ifile, User &p)
+std::ifstream &operator>>(std::ifstream &ifile, User &p)   //file
 {
     ifile.read((char *)&p, sizeof(p));
-    return ifile;
+    return ifile;                              //infile>>p
 };
 
-std::istream &operator>>(std::istream &ifile, User &p)
+std::istream &operator>>(std::istream &ifile, User &p)  //object //stream operator overloading..
 {
-    std::cout << "Enter your name" << std::endl;
-    std::cin >> p.name;
-    std::cout << "Enter your age" << std::endl;
-    std::cin >> p.age;
-    std::cout << "Enter your username" << std::endl;
-    std::cin >> p.username;
-    std::cout << "Enter your password" << std::endl;
-    std::cin >> p.password;
+std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout <<"\t\t" << char(179) << "  Enter your name :      " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.name;
+std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout << "\t\t" <<char(179) << "  Enter your age      :  " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.age;
+std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout << "\t\t" <<char(179) << "  Enter your username :  " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.username;
+ std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+std::cout << "\t\t" <<char(179) << "  Enter your password:   " << char(179) << std::endl;
+std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
+std::cin >> p.password;
     return ifile;
 };
 std::ostream &operator<<(std::ostream &out, User &p)
@@ -137,8 +150,17 @@ bool Register()
 {
     User p;
     std::fstream userfile;
-    std::cin >> p;
+    std::cin >> p;         //operater overload garera read garisakehxam?? so read garera p ma insert bho..ifile ko lagi pani operator overloading xa..and insertion ko lagi pani
+//we need to have read the object
+//we need to have extracted a single element of object at once
+//One for reading the file and next for directly reading/writing objects.
+
+
+
+
 check:
+
+
     userfile.open("user.bin", std::ios::binary | std::ios::in);
     User a;
     bool userfound = false;
@@ -156,8 +178,11 @@ check:
     }
     if (userfound)
     {
+        
         std::cout << "User with the given username already exists" << std::endl;
-        std::cout << "enter a new username" << std::endl;
+        std::cout << "\t\t" <<char(218);  for(int i=0; i<25; i++){std::cout << char(196);}  std::cout << char(191) << std::endl;
+        std::cout << "\t\t" <<char(179) << "  Enter your username :  " << char(179) << std::endl;
+        std::cout << "\t\t" <<char(192);  for(int i=0; i<25; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
         std::cin >> p.username;
         goto check;
     }
@@ -175,7 +200,7 @@ check:
     return false;
 };
 
-class name_foll
+class name_foll   //name lai object ko rup ma follow ma rakhna ko lagi...we could also add the time of follwing ..
 {
     private:
         char nnamm[20];
@@ -186,7 +211,44 @@ class name_foll
             std::strcpy(nnamm,a);
         }
         void display()
-        {
+        {   
             std::cout<<nnamm<<std::endl;
         }
+        friend void view_followers();
+        friend void view_following();
+        friend void blocked_people();
+        friend bool check_user(char []);
 };
+
+
+
+bool check_user(char usernamee[])
+{
+    std::string path= "../data/follow/";
+    std::fstream to_check_for_block;
+    std::string recc(currentLoggedInUsername);
+    bool userfoundd = false;
+    try 
+        {
+            to_check_for_block.open((path+recc+"/blocked_by.bin").c_str(), std::ios::in);
+            if (!to_check_for_block.is_open()){
+                throw 1;
+            }
+            name_foll a;
+            
+            while (to_check_for_block.read((char *)&a, sizeof(name_foll)))
+            {
+                if (!std::strcmp(usernamee,a.nnamm))
+                {
+                    userfoundd = true;
+                    break;
+                }
+            }
+            }
+            catch (int i)
+            {
+                std::cout << " " << std::endl;
+                
+            }
+        return userfoundd;
+}

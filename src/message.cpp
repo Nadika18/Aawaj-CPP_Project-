@@ -5,7 +5,6 @@
 #include <string>
 #include <cstring>
 #include <windows.h>
-#include <cstdio> // include for std::rename
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -53,12 +52,13 @@ class message{
         time (&t); //passing argument to time()
         tt = localtime(&t);
         return asctime(tt); 
-    };
+    }
+
     void sendMessage(){
         
         string path="../data/messages/";
         string extension= ".bin";
-        string sdr(sender), rec(receiver);
+        string sdr(sender), rec(receiver);   
         fstream receiverFile;
         receiverFile.open((path+rec+"/"+sdr+extension).c_str(), ios::app);
         receiverFile.write((char *)this, sizeof(message));
@@ -73,13 +73,9 @@ class message{
         return (msgtime < str.msgtime);
     }
     friend void viewmessage(message &);
-    
-    friend ostream& operator<<(ostream &out,message &p);
-
 };
 
 void changeColor(int);
-
 void viewsenders(){
     char p[20];
     string path="../data/messages/";
@@ -87,14 +83,14 @@ void viewsenders(){
     fstream databasefile;
     databasefile.open((path+rec+"/database.bin").c_str(),ios::in);
     cout<<"Inbox:"<<endl;
-    set<string, greater<string> >s1;
+    set<string, greater<string>>s1; //remain //declare
     while(!databasefile.eof()){
     databasefile>>p;
     string s(p);
     s1.insert(s);
     }
     // printing set s1
-    set<string, greater<string> >::iterator itr;
+    set<string, greater<string>>::iterator itr;
     for (itr = s1.begin(); itr != s1.end(); itr++)
     {
         cout << *itr<<" "<<endl;
@@ -126,8 +122,8 @@ void viewmessage(message &p){
         v.push_back(m);
     }
     receiverFile.close();
-    std::sort(v.begin(), v.end());
-   for(auto it = v.begin(); it != v.end(); it++) {
+    std::sort(v.begin(), v.end());  //sorting in vector
+    for(auto it = v.begin(); it != v.end(); it++) {
         if(!strcmp(it->sender, currentLoggedInUsername)){
         cout.width(100);
         cout.setf(ios::right);
