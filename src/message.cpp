@@ -83,14 +83,14 @@ void viewsenders(){
     fstream databasefile;
     databasefile.open((path+rec+"/database.bin").c_str(),ios::in);
     cout<<"Inbox:"<<endl;
-    set<string, greater<string> >s1; //remain //declare
+    set<string, greater<string>>s1; //remain //declare
     while(!databasefile.eof()){
     databasefile>>p;
     string s(p);
     s1.insert(s);
     }
     // printing set s1
-    set<string, greater<string> >::iterator itr;
+    set<string, greater<string>>::iterator itr;
     for (itr = s1.begin(); itr != s1.end(); itr++)
     {
         cout << *itr<<" "<<endl;

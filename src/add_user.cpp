@@ -88,7 +88,7 @@ void block_friend()
                 name_foll n_foll(LoggedInUser.username);
                 name_foll name_of_friend(user_name000);
                 blocked_to_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
-                blocked_by_list.open(path+name_of_user+"/blocked_by.bin",ios::app|ios::binary);
+                blocked_by_list.open((path+name_of_user+"/blocked_by.bin").c_str(),ios::app|ios::binary);
                 blocked_by_list.write(reinterpret_cast<char*>(&n_foll),sizeof(n_foll));
                 break;
             }

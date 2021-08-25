@@ -22,16 +22,29 @@ User universal_user;
 string path="../data/follow/";
 
 void display_photo(){
-       std:: ifstream file("../data/my.txt");
-if (file.is_open())
-{	
-    std::string line;
-	while (getline(file, line))
-    {  
-    	std::cout << line << std::endl;
+ std::cout<<endl<<endl;
+    char title[12][62]=
+	{
+                          
+      "                  _______ _______             \n"   ,  
+      "               ---I   0   |    0  I----       \n"   ,
+      "                  I____ /   \\_____I           \n"   ,  
+      "                       ( ___ )                \n"   ,
+      "                     \\_________/              \n"   ,  
+      "                        \\___/                 \n"   ,
+      "         ----------------------------------- \n"
+	};
+    
+    for(int i=0;i<12;i++){
+        for (int j=0;j<62; j++)
+            
+                   
+            std::cout<<(title[i][j]);
+            
+        }
     }
-}
-}
+
+
 
 void view_followers()
 {   
