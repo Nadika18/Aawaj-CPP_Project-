@@ -42,7 +42,7 @@ follower vanne file kholcha ani tyasma value add garcha.
                 strcpy(name_of_user,a.name);
                 userfound = true;
                 p_follow.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
-                user_following.open(path+name_of_user+"/followers.bin",ios::app|ios::binary);
+                user_following.open((path+name_of_user+"/followers.bin").c_str(),ios::app|ios::binary);
                 user_following.write(reinterpret_cast<char*>(&n_foll),sizeof(n_foll));
                 break;
             }
@@ -91,7 +91,7 @@ void block_friend()
                 name_foll n_foll(LoggedInUser.username);
                 name_foll name_of_friend(user_name000);
                 blocked_to_list.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
-                blocked_by_list.open(path+name_of_user+"/blocked_by.bin",ios::app|ios::binary);
+                blocked_by_list.open((path+name_of_user+"/blocked_by.bin").c_str(),ios::app|ios::binary);
                 blocked_by_list.write(reinterpret_cast<char*>(&n_foll),sizeof(n_foll));
                 break;
             }

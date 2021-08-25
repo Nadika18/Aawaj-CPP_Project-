@@ -65,7 +65,7 @@ class posts{
         postfile.write((char *)this, sizeof(posts));
         postfile.close();
         string postId3;
-        postId3= to_string(this->postId);
+        postId3= to_string(this->postId); //converting integer to string
         string extension= ".bin";
         fstream commentfile;
         commentfile.open(("../data/posts/"+postId3+extension).c_str(), ios::app);
@@ -93,7 +93,7 @@ void viewPosts(){
         v.push_back(p);
     };
     postfile.close();
-    std::sort(v.begin(), v.end());
+    std::sort(v.begin(), v.end());  //sort acq posttime
     for(auto it = v.begin(); it != v.end(); it++) {
         cout<<it->author<<": "<<endl;
         changeColorr(14);
@@ -112,9 +112,9 @@ void viewPosts(){
         posts a;
         while(commentfile.read((char *)&a, sizeof(posts))){
             cout<<a.author<<": ";
-            changeColor(12);
+            changeColorr(12);
             cout<<a.postBody<<endl;
-            changeColor(15);
+            changeColorr(15);
             cout<<asctime(localtime(&a.posttime));
             cout<<endl;
            };
