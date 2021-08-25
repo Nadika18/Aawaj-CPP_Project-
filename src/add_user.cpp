@@ -13,7 +13,7 @@ void add_friend()
 {
 
     char name_of_user[20];
-    string path= "../d ata/follow/";
+    string path= "../data/follow/";
     std::system("CLS");
     fstream main_filepointer;
     fstream p_follow;          //jasle follow garcha tyasko
@@ -42,7 +42,7 @@ follower vanne file kholcha ani tyasma value add garcha.
                 strcpy(name_of_user,a.name);
                 userfound = true;
                 p_follow.write(reinterpret_cast<char*>(&name_of_friend),sizeof(name_of_friend));
-                user_following.open(path+name_of_user+"/followers.bin",ios::app|ios::binary);
+                user_following.open((path+name_of_user+"/followers.bin").c_str(),ios::app|ios::binary);
                 user_following.write(reinterpret_cast<char*>(&n_foll),sizeof(n_foll));
                 break;
             }

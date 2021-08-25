@@ -232,7 +232,7 @@ bool check_user(char usernamee[])
             }
             catch (int i)
             {
-                std::cout << "No user file exists" << std::endl;
+                std::cout << " " << std::endl;
                 
             }
         return userfoundd;
