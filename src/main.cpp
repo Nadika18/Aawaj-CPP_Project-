@@ -103,7 +103,7 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
             int answer;
             cout<<std::setw(67)<<"PRIVACY\n";
             std::cout  << "\t\t" <<char(218);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout << char(191) << std::endl;
-std::cout  <<"\t\t" << char(179) << "   1.Add Friend     " << char(179) << std::endl;
+std::cout  <<"\t\t" << char(179) << "   1.Follow users   " << char(179) << std::endl;
 
 std::cout  << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout  << char(196);}  std::cout << char(180)  << std::endl;
 std::cout  << "\t\t" <<char(179) << "   2.Block Friend   " << char(179) << std::endl;
@@ -258,14 +258,12 @@ std::cout <<"\t\t" << char(179) << "   1.Followers      " << char(179) << std::e
 
 std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
 std::cout << "\t\t" <<char(179) << "   2.Followings     " << char(179) << std::endl;
-std::cout << "\t\t"<< char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   3.Past Posts     " << char(179) << std::endl;
 
 std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   4.Blocked Users  " << char(179) << std::endl;
+std::cout << "\t\t" <<char(179) << "   3.Blocked Users  " << char(179) << std::endl;
 
 std::cout << "\t\t" <<char(195);  for(int i=0; i<20; i++){std::cout << char(196);}  std::cout << char(180)  << std::endl;
-std::cout << "\t\t" <<char(179) << "   5.Exit           " << char(179) << std::endl;
+std::cout << "\t\t" <<char(179) << "   4.Exit           " << char(179) << std::endl;
 
 std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196);}   std::cout << char(217) << std::endl;
             cin>>answer;
@@ -285,19 +283,11 @@ std::cout << "\t\t" <<char(192);  for(int i=0; i<20; i++){std::cout << char(196)
                 std::cin>>l;
                 goto profile;
                 break;
-                case 4:
+                case 3:
                 std::system("CLS");
                 blocked_people();
                 std::cin>>l;
                 goto profile;
-                case 3:
-                std::system("CLS");
-                viewOwnPosts();
-                char c;
-                cout<<"Press c to contine"<<endl;
-                cin>>c;
-                goto profile;
-                break;
                 default:
                 std::system("CLS");
                 goto home;

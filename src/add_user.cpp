@@ -16,15 +16,12 @@ void add_friend()
     string path= "../data/follow/";
     std::system("CLS");
     fstream main_filepointer;
-    fstream p_follow;          //jasle follow garcha tyasko
-    std::ofstream user_following;    //to add as following for tyo manche ko
+    fstream p_follow;          
+    std::ofstream user_following;    
     User a;
     bool userfound = false;
     char user_name000[20];
-/*  p_follow le chahi manche le follow gare pachi tyasko following vanne folder ma add
-gayera add garna lai following.bin kholcha, vane user_following le chahi tyo follow gareko manche  ko
-follower vanne file kholcha ani tyasma value add garcha.  
-*/
+
 
     main_filepointer.open("user.bin", std::ios::binary | std::ios::in);
     p_follow.open((path+LoggedInUser.name+"/following.bin").c_str(),ios::app | ios::binary);
@@ -67,8 +64,8 @@ void block_friend()
     string path= "../data/follow/";
     std::system("CLS");
     fstream main_filepointer;
-    fstream blocked_to_list;   //logged in user ko lagi block gareako ko list
-    fstream blocked_by_list;     // for file of block gareko manche
+    fstream blocked_to_list;   // list of user who blocked logged in user 
+    fstream blocked_by_list;     // for file of blocked people
     char user_name000[20];
     User a;
     bool userfound = false;
